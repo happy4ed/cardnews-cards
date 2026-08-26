@@ -1,0 +1,28 @@
+[2026-08-20 23:28:56] === 시작: total=6 prefix=None ===
+[2026-08-20 23:28:58] 로그인 시도...
+[2026-08-20 23:28:59] 로그인 완료
+[2026-08-20 23:28:59] ▶ hero-media-shield-device-afternoon
+[2026-08-20 23:29:28]   저장 (1331532 bytes)
+[2026-08-20 23:29:34]   HA scp OK
+[2026-08-20 23:29:38]   TOD fanout OK (hero-media-shield-device)
+[2026-08-20 23:29:40] ▶ hero-media-shield-device-off-afternoon
+[2026-08-20 23:30:04]   저장 (1307252 bytes)
+[2026-08-20 23:30:09]   HA scp OK
+[2026-08-20 23:30:13]   TOD fanout OK (hero-media-shield-device-off)
+[2026-08-20 23:30:15] ▶ hero-media-smallroom-tv-afternoon
+[2026-08-20 23:30:39]   저장 (1724162 bytes)
+[2026-08-20 23:30:45]   HA scp OK
+[2026-08-20 23:30:48]   TOD fanout OK (hero-media-smallroom-tv)
+[2026-08-20 23:30:50] ▶ hero-media-smallroom-tv-off-afternoon
+[2026-08-20 23:31:11]   저장 (1362620 bytes)
+[2026-08-20 23:31:16]   HA scp OK
+[2026-08-20 23:31:19]   TOD fanout OK (hero-media-smallroom-tv-off)
+[2026-08-20 23:31:21] ▶ hero-media-samsung-tv-living-off-afternoon
+[2026-08-20 23:31:46]   저장 (1367908 bytes)
+[2026-08-20 23:31:51]   HA scp OK
+[2026-08-20 23:31:55]   TOD fanout OK (hero-media-samsung-tv-living-off)
+[2026-08-20 23:31:57] ▶ hero-media-google-tv-bedroom-off-afternoon
+[2026-08-20 23:32:21]   저장 (1561701 bytes)
+[2026-08-20 23:32:27]   HA scp OK
+[2026-08-20 23:32:30]   TOD fanout OK (hero-media-google-tv-bedroom-off)
+[2026-08-20 23:32:32] === 완료: success=6/6 failed=[] ===

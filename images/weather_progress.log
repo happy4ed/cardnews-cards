@@ -1,0 +1,32 @@
+[2026-08-21 00:19:36] === 시작: total=7 prefix=None ===
+[2026-08-21 00:19:38] 로그인 시도...
+[2026-08-21 00:19:40] 로그인 완료
+[2026-08-21 00:19:40] ▶ hero-weather-sunny-afternoon
+[2026-08-21 00:20:05]   저장 (1909309 bytes)
+[2026-08-21 00:20:11]   HA scp OK
+[2026-08-21 00:20:14]   TOD fanout OK (hero-weather-sunny)
+[2026-08-21 00:20:16] ▶ hero-weather-partlycloudy-afternoon
+[2026-08-21 00:20:52]   저장 (2156094 bytes)
+[2026-08-21 00:20:58]   HA scp OK
+[2026-08-21 00:21:02]   TOD fanout OK (hero-weather-partlycloudy)
+[2026-08-21 00:21:04] ▶ hero-weather-cloudy-afternoon
+[2026-08-21 00:21:36]   저장 (1582961 bytes)
+[2026-08-21 00:21:42]   HA scp OK
+[2026-08-21 00:21:45]   TOD fanout OK (hero-weather-cloudy)
+[2026-08-21 00:21:47] ▶ hero-weather-rainy-afternoon
+[2026-08-21 00:22:32]   저장 (2080225 bytes)
+[2026-08-21 00:22:40]   HA scp OK
+[2026-08-21 00:22:44]   TOD fanout OK (hero-weather-rainy)
+[2026-08-21 00:22:46] ▶ hero-weather-snowy-afternoon
+[2026-08-21 00:23:35]   저장 (2291639 bytes)
+[2026-08-21 00:23:43]   HA scp OK
+[2026-08-21 00:23:47]   TOD fanout OK (hero-weather-snowy)
+[2026-08-21 00:23:49] ▶ hero-weather-lightning-rainy-afternoon
+[2026-08-21 00:24:21]   저장 (2126278 bytes)
+[2026-08-21 00:24:28]   HA scp OK
+[2026-08-21 00:24:31]   TOD fanout OK (hero-weather-lightning-rainy)
+[2026-08-21 00:24:33] ▶ hero-weather-fog-afternoon
+[2026-08-21 00:25:02]   저장 (1608993 bytes)
+[2026-08-21 00:25:08]   HA scp OK
+[2026-08-21 00:25:12]   TOD fanout OK (hero-weather-fog)
+[2026-08-21 00:25:14] === 완료: success=7/7 failed=[] ===

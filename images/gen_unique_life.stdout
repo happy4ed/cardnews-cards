@@ -1,0 +1,16 @@
+[2026-08-19 01:13:40] === 시작: total=3 prefix=hero-life ===
+[2026-08-19 01:13:42] 로그인 시도...
+[2026-08-19 01:13:44] 로그인 완료
+[2026-08-19 01:13:44] ▶ hero-life-bus-afternoon
+[2026-08-19 01:14:16]   저장 (2022577 bytes)
+[2026-08-19 01:14:22]   HA scp OK
+[2026-08-19 01:14:26]   TOD fanout OK (hero-life-bus)
+[2026-08-19 01:14:28] ▶ hero-life-weather-afternoon
+[2026-08-19 01:15:09]   저장 (1938602 bytes)
+[2026-08-19 01:15:15]   HA scp OK
+[2026-08-19 01:15:18]   TOD fanout OK (hero-life-weather)
+[2026-08-19 01:15:20] ▶ hero-life-schedule-afternoon
+[2026-08-19 01:15:57]   저장 (1875184 bytes)
+[2026-08-19 01:16:03]   HA scp OK
+[2026-08-19 01:16:06]   TOD fanout OK (hero-life-schedule)
+[2026-08-19 01:16:09] === 완료: success=3/3 failed=[] ===

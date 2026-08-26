@@ -1,0 +1,16 @@
+[2026-08-19 01:11:08] === 시작: total=3 prefix=hero-airquality ===
+[2026-08-19 01:11:10] 로그인 시도...
+[2026-08-19 01:11:12] 로그인 완료
+[2026-08-19 01:11:12] ▶ hero-airquality-summary-afternoon
+[2026-08-19 01:11:49]   저장 (2033162 bytes)
+[2026-08-19 01:11:55]   HA scp OK
+[2026-08-19 01:11:58]   TOD fanout OK (hero-airquality-summary)
+[2026-08-19 01:12:00] ▶ hero-airquality-living-afternoon
+[2026-08-19 01:12:37]   저장 (1955122 bytes)
+[2026-08-19 01:12:43]   HA scp OK
+[2026-08-19 01:12:46]   TOD fanout OK (hero-airquality-living)
+[2026-08-19 01:12:48] ▶ hero-airquality-bedroom-afternoon
+[2026-08-19 01:13:25]   저장 (1788306 bytes)
+[2026-08-19 01:13:31]   HA scp OK
+[2026-08-19 01:13:34]   TOD fanout OK (hero-airquality-bedroom)
+[2026-08-19 01:13:36] === 완료: success=3/3 failed=[] ===

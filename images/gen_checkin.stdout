@@ -1,0 +1,19 @@
+Traceback (most recent call last):
+  File "<string>", line 8, in <module>
+  File "<string>", line 9, in <module>
+NameError: name '__file__' is not defined. Did you mean: '__name__'?
+Error in sys.excepthook:
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/apport_python_hook.py", line 228, in partial_apport_excepthook
+    return apport_excepthook(binary, exc_type, exc_obj, exc_tb)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/apport_python_hook.py", line 114, in apport_excepthook
+    report["ExecutableTimestamp"] = str(int(os.stat(binary).st_mtime))
+                                            ^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/opt/ha-agent/cardnews-cards/images/-c'
+
+Original exception was:
+Traceback (most recent call last):
+  File "<string>", line 8, in <module>
+  File "<string>", line 9, in <module>
+NameError: name '__file__' is not defined. Did you mean: '__name__'?

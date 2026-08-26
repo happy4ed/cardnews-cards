@@ -1,0 +1,128 @@
+[2026-08-19 01:04:37] === 시작: total=5 prefix=hero-media ===
+[2026-08-19 01:04:39] 로그인 시도...
+[2026-08-19 01:04:40] 로그인 완료
+[2026-08-19 01:04:40] ▶ hero-media-ma-hub-afternoon
+[2026-08-19 01:05:22]   저장 (2108158 bytes)
+[2026-08-19 01:05:28]   HA scp OK
+[2026-08-19 01:05:32]   TOD fanout OK (hero-media-ma-hub)
+[2026-08-19 01:05:34] ▶ hero-media-shield-tv-living-afternoon
+[2026-08-19 01:06:07]   저장 (1637300 bytes)
+[2026-08-19 01:06:08] === 시작: total=23 prefix=None ===
+[2026-08-19 01:06:10] 로그인 시도...
+[2026-08-19 01:06:12] 로그인 완료
+[2026-08-19 01:06:12] ⏭ 존재: hero-media-ma-hub-afternoon (fanout만)
+[2026-08-19 01:06:13]   HA scp OK
+[2026-08-19 01:06:17]   TOD fanout OK (hero-media-shield-tv-living)
+[2026-08-19 01:06:19] ▶ hero-media-samsung-tv-living-afternoon
+[2026-08-19 01:06:48]   저장 (1585690 bytes)
+[2026-08-19 01:06:54]   HA scp OK
+[2026-08-19 01:06:58]   TOD fanout OK (hero-media-samsung-tv-living)
+[2026-08-19 01:07:00] ▶ hero-media-google-tv-bedroom-afternoon
+[2026-08-19 01:07:33]   저장 (1679367 bytes)
+[2026-08-19 01:07:40]   HA scp OK
+[2026-08-19 01:07:43]   TOD fanout OK (hero-media-google-tv-bedroom)
+[2026-08-19 01:07:45] ▶ hero-media-speaker-nowplaying-afternoon
+[2026-08-19 01:08:18]   저장 (1822903 bytes)
+[2026-08-19 01:08:25]   HA scp OK
+[2026-08-19 01:08:28]   TOD fanout OK (hero-media-speaker-nowplaying)
+[2026-08-19 01:08:30] === 완료: success=5/5 failed=[] ===
+[2026-08-19 01:08:39] === 시작: total=3 prefix=hero-summary ===
+[2026-08-19 01:08:41] 로그인 시도...
+[2026-08-19 01:08:43] 로그인 완료
+[2026-08-19 01:08:43] ▶ hero-summary-family-afternoon
+[2026-08-19 01:09:16]   저장 (2175317 bytes)
+[2026-08-19 01:09:24]   HA scp OK
+[2026-08-19 01:09:28]   TOD fanout OK (hero-summary-family)
+[2026-08-19 01:09:30] ▶ hero-summary-energy-afternoon
+[2026-08-19 01:10:07]   저장 (1716434 bytes)
+[2026-08-19 01:10:14]   HA scp OK
+[2026-08-19 01:10:18]   TOD fanout OK (hero-summary-energy)
+[2026-08-19 01:10:20] ▶ hero-summary-tier-afternoon
+[2026-08-19 01:10:52]   저장 (1540039 bytes)
+[2026-08-19 01:10:58]   HA scp OK
+[2026-08-19 01:11:02]   TOD fanout OK (hero-summary-tier)
+[2026-08-19 01:11:04] === 완료: success=3/3 failed=[] ===
+[2026-08-19 01:11:08] === 시작: total=3 prefix=hero-airquality ===
+[2026-08-19 01:11:10] 로그인 시도...
+[2026-08-19 01:11:12] 로그인 완료
+[2026-08-19 01:11:12] ▶ hero-airquality-summary-afternoon
+[2026-08-19 01:11:49]   저장 (2033162 bytes)
+[2026-08-19 01:11:55]   HA scp OK
+[2026-08-19 01:11:58]   TOD fanout OK (hero-airquality-summary)
+[2026-08-19 01:12:00] ▶ hero-airquality-living-afternoon
+[2026-08-19 01:12:37]   저장 (1955122 bytes)
+[2026-08-19 01:12:43]   HA scp OK
+[2026-08-19 01:12:46]   TOD fanout OK (hero-airquality-living)
+[2026-08-19 01:12:48] ▶ hero-airquality-bedroom-afternoon
+[2026-08-19 01:13:25]   저장 (1788306 bytes)
+[2026-08-19 01:13:31]   HA scp OK
+[2026-08-19 01:13:34]   TOD fanout OK (hero-airquality-bedroom)
+[2026-08-19 01:13:36] === 완료: success=3/3 failed=[] ===
+[2026-08-19 01:13:40] === 시작: total=3 prefix=hero-life ===
+[2026-08-19 01:13:42] 로그인 시도...
+[2026-08-19 01:13:44] 로그인 완료
+[2026-08-19 01:13:44] ▶ hero-life-bus-afternoon
+[2026-08-19 01:14:16]   저장 (2022577 bytes)
+[2026-08-19 01:14:22]   HA scp OK
+[2026-08-19 01:14:26]   TOD fanout OK (hero-life-bus)
+[2026-08-19 01:14:28] ▶ hero-life-weather-afternoon
+[2026-08-19 01:15:09]   저장 (1938602 bytes)
+[2026-08-19 01:15:15]   HA scp OK
+[2026-08-19 01:15:18]   TOD fanout OK (hero-life-weather)
+[2026-08-19 01:15:20] ▶ hero-life-schedule-afternoon
+[2026-08-19 01:15:57]   저장 (1875184 bytes)
+[2026-08-19 01:16:03]   HA scp OK
+[2026-08-19 01:16:06]   TOD fanout OK (hero-life-schedule)
+[2026-08-19 01:16:09] === 완료: success=3/3 failed=[] ===
+[2026-08-19 01:16:12] === 시작: total=3 prefix=hero-calendar ===
+[2026-08-19 01:16:14] 로그인 시도...
+[2026-08-19 01:16:16] 로그인 완료
+[2026-08-19 01:16:16] ▶ hero-calendar-week-afternoon
+[2026-08-19 01:16:45]   저장 (1690155 bytes)
+[2026-08-19 01:16:51]   HA scp OK
+[2026-08-19 01:16:55]   TOD fanout OK (hero-calendar-week)
+[2026-08-19 01:16:57] ▶ hero-calendar-finance-afternoon
+[2026-08-19 01:17:30]   저장 (1622505 bytes)
+[2026-08-19 01:17:37]   HA scp OK
+[2026-08-19 01:17:41]   TOD fanout OK (hero-calendar-finance)
+[2026-08-19 01:17:43] ▶ hero-calendar-sports-afternoon
+[2026-08-19 01:18:15]   저장 (1286121 bytes)
+[2026-08-19 01:18:22]   HA scp OK
+[2026-08-19 01:18:26]   TOD fanout OK (hero-calendar-sports)
+[2026-08-19 01:18:28] === 완료: success=3/3 failed=[] ===
+[2026-08-19 01:18:33] === 시작: total=2 prefix=hero-energy ===
+[2026-08-19 01:18:34] 로그인 시도...
+[2026-08-19 01:18:36] 로그인 완료
+[2026-08-19 01:18:36] ▶ hero-energy-live-afternoon
+[2026-08-19 01:19:09]   저장 (2040481 bytes)
+[2026-08-19 01:19:16]   HA scp OK
+[2026-08-19 01:19:20]   TOD fanout OK (hero-energy-live)
+[2026-08-19 01:19:22] ▶ hero-energy-periods-afternoon
+[2026-08-19 01:19:51]   저장 (1435482 bytes)
+[2026-08-19 01:19:57]   HA scp OK
+[2026-08-19 01:20:01]   TOD fanout OK (hero-energy-periods)
+[2026-08-19 01:20:03] === 완료: success=2/2 failed=[] ===
+[2026-08-19 01:20:07] === 시작: total=2 prefix=hero-appliance ===
+[2026-08-19 01:20:09] 로그인 시도...
+[2026-08-19 01:20:11] 로그인 완료
+[2026-08-19 01:20:11] ▶ hero-appliance-live-afternoon
+[2026-08-19 01:21:08]   저장 (1898838 bytes)
+[2026-08-19 01:21:16]   HA scp OK
+[2026-08-19 01:21:20]   TOD fanout OK (hero-appliance-live)
+[2026-08-19 01:21:22] ▶ hero-appliance-monthly-afternoon
+[2026-08-19 01:21:54]   저장 (1404192 bytes)
+[2026-08-19 01:22:01]   HA scp OK
+[2026-08-19 01:22:05]   TOD fanout OK (hero-appliance-monthly)
+[2026-08-19 01:22:07] === 완료: success=2/2 failed=[] ===
+[2026-08-19 01:22:11] === 시작: total=2 prefix=hero-lotto ===
+[2026-08-19 01:22:12] 로그인 시도...
+[2026-08-19 01:22:14] 로그인 완료
+[2026-08-19 01:22:14] ▶ hero-lotto-latest-afternoon
+[2026-08-19 01:22:47]   저장 (1496090 bytes)
+[2026-08-19 01:22:53]   HA scp OK
+[2026-08-19 01:22:56]   TOD fanout OK (hero-lotto-latest)
+[2026-08-19 01:22:58] ▶ hero-lotto-auto-afternoon
+[2026-08-19 01:23:31]   저장 (1869558 bytes)
+[2026-08-19 01:23:37]   HA scp OK
+[2026-08-19 01:23:40]   TOD fanout OK (hero-lotto-auto)
+[2026-08-19 01:23:43] === 완료: success=2/2 failed=[] ===

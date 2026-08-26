@@ -1,0 +1,48 @@
+[2026-08-19 00:43:33] === 파이프라인 시작: total=4 ===
+[2026-08-19 00:43:35] 로그인 시도...
+[2026-08-19 00:43:36] 로그인 완료
+[2026-08-19 00:43:36] ▶ hero-appliance-washer-samsung-bespoke-combo-afternoon
+[2026-08-19 00:44:18]   저장 완료 (1684255 bytes) → /opt/ha-agent/cardnews-cards/images/hero-appliance-washer-samsung-bespoke-combo-afternoon.png
+[2026-08-19 00:44:26]   HA 업로드 완료
+[2026-08-19 00:44:28] ▶ hero-appliance-fridge-samsung-bespoke-afternoon
+[2026-08-19 00:44:59]   저장 완료 (1562801 bytes) → /opt/ha-agent/cardnews-cards/images/hero-appliance-fridge-samsung-bespoke-afternoon.png
+[2026-08-19 00:45:06]   HA 업로드 완료
+[2026-08-19 00:45:08] ▶ hero-appliance-oven-samsung-bespoke-afternoon
+[2026-08-19 00:45:38]   저장 완료 (1769862 bytes) → /opt/ha-agent/cardnews-cards/images/hero-appliance-oven-samsung-bespoke-afternoon.png
+[2026-08-19 00:45:45]   HA 업로드 완료
+[2026-08-19 00:45:47] ▶ hero-appliance-humidifier-deerma-jsq2g-afternoon
+[2026-08-19 00:46:22]   저장 완료 (1559666 bytes) → /opt/ha-agent/cardnews-cards/images/hero-appliance-humidifier-deerma-jsq2g-afternoon.png
+[2026-08-19 00:46:29]   HA 업로드 완료
+[2026-08-19 00:46:31] === 완료: success=4 skipped=0 total=4 ===
+[2026-08-19 00:55:19] === 파이프라인 시작: total=12 ===
+[2026-08-19 00:55:21] 로그인 시도...
+[2026-08-19 00:55:23] 로그인 완료
+[2026-08-19 00:55:23] ⏭ 스킵 (이미 존재): hero-appliance-washer-samsung-bespoke-combo-afternoon
+[2026-08-19 00:55:23] ⏭ 스킵 (이미 존재): hero-appliance-fridge-samsung-bespoke-afternoon
+[2026-08-19 00:55:23] ⏭ 스킵 (이미 존재): hero-appliance-oven-samsung-bespoke-afternoon
+[2026-08-19 00:55:23] ⏭ 스킵 (이미 존재): hero-appliance-humidifier-deerma-jsq2g-afternoon
+[2026-08-19 00:55:23] ▶ hero-appliance-washer-samsung-bespoke-combo-running-afternoon
+[2026-08-19 00:56:09]   저장 완료 (1722193 bytes) → /opt/ha-agent/cardnews-cards/images/hero-appliance-washer-samsung-bespoke-combo-running-afternoon.png
+[2026-08-19 00:56:16]   HA 업로드 완료
+[2026-08-19 00:56:18] ▶ hero-appliance-washer-samsung-bespoke-combo-idle-afternoon
+[2026-08-19 00:56:53]   저장 완료 (1591862 bytes) → /opt/ha-agent/cardnews-cards/images/hero-appliance-washer-samsung-bespoke-combo-idle-afternoon.png
+[2026-08-19 00:57:00]   HA 업로드 완료
+[2026-08-19 00:57:02] ▶ hero-appliance-fridge-samsung-bespoke-open-afternoon
+[2026-08-19 00:57:43]   저장 완료 (1833210 bytes) → /opt/ha-agent/cardnews-cards/images/hero-appliance-fridge-samsung-bespoke-open-afternoon.png
+[2026-08-19 00:57:49]   HA 업로드 완료
+[2026-08-19 00:57:51] ▶ hero-appliance-fridge-samsung-bespoke-closed-afternoon
+[2026-08-19 00:58:22]   저장 완료 (1429025 bytes) → /opt/ha-agent/cardnews-cards/images/hero-appliance-fridge-samsung-bespoke-closed-afternoon.png
+[2026-08-19 00:58:29]   HA 업로드 완료
+[2026-08-19 00:58:31] ▶ hero-appliance-oven-samsung-bespoke-cooking-afternoon
+[2026-08-19 00:59:01]   저장 완료 (1322485 bytes) → /opt/ha-agent/cardnews-cards/images/hero-appliance-oven-samsung-bespoke-cooking-afternoon.png
+[2026-08-19 00:59:07]   HA 업로드 완료
+[2026-08-19 00:59:09] ▶ hero-appliance-oven-samsung-bespoke-idle-afternoon
+[2026-08-19 00:59:40]   저장 완료 (1313724 bytes) → /opt/ha-agent/cardnews-cards/images/hero-appliance-oven-samsung-bespoke-idle-afternoon.png
+[2026-08-19 00:59:46]   HA 업로드 완료
+[2026-08-19 00:59:48] ▶ hero-appliance-humidifier-deerma-jsq2g-misting-afternoon
+[2026-08-19 01:00:19]   저장 완료 (1552579 bytes) → /opt/ha-agent/cardnews-cards/images/hero-appliance-humidifier-deerma-jsq2g-misting-afternoon.png
+[2026-08-19 01:00:25]   HA 업로드 완료
+[2026-08-19 01:00:27] ▶ hero-appliance-humidifier-deerma-jsq2g-idle-afternoon
+[2026-08-19 01:01:02]   저장 완료 (1612811 bytes) → /opt/ha-agent/cardnews-cards/images/hero-appliance-humidifier-deerma-jsq2g-idle-afternoon.png
+[2026-08-19 01:01:08]   HA 업로드 완료
+[2026-08-19 01:01:10] === 완료: success=8 skipped=4 total=12 ===

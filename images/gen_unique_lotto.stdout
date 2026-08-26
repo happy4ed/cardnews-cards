@@ -1,0 +1,12 @@
+[2026-08-19 01:22:11] === 시작: total=2 prefix=hero-lotto ===
+[2026-08-19 01:22:12] 로그인 시도...
+[2026-08-19 01:22:14] 로그인 완료
+[2026-08-19 01:22:14] ▶ hero-lotto-latest-afternoon
+[2026-08-19 01:22:47]   저장 (1496090 bytes)
+[2026-08-19 01:22:53]   HA scp OK
+[2026-08-19 01:22:56]   TOD fanout OK (hero-lotto-latest)
+[2026-08-19 01:22:58] ▶ hero-lotto-auto-afternoon
+[2026-08-19 01:23:31]   저장 (1869558 bytes)
+[2026-08-19 01:23:37]   HA scp OK
+[2026-08-19 01:23:40]   TOD fanout OK (hero-lotto-auto)
+[2026-08-19 01:23:43] === 완료: success=2/2 failed=[] ===

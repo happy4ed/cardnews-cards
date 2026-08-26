@@ -1,0 +1,140 @@
+[2026-08-18 05:05:08] === 파이프라인 시작: total=45 ===
+[2026-08-18 05:05:10] 로그인 시도...
+[2026-08-18 05:05:12] 로그인 완료
+[2026-08-18 05:05:12] ▶ hero-livingroom-dawn
+[2026-08-18 05:05:43]   저장 완료 (1619469 bytes) → /opt/ha-agent/cardnews-cards/images/hero-livingroom-dawn.png
+[2026-08-18 05:05:49]   HA 업로드 완료
+[2026-08-18 05:05:51] ▶ hero-livingroom-morning
+[2026-08-18 05:06:26]   저장 완료 (1788050 bytes) → /opt/ha-agent/cardnews-cards/images/hero-livingroom-morning.png
+[2026-08-18 05:06:32]   HA 업로드 완료
+[2026-08-18 05:06:34] ▶ hero-livingroom-afternoon
+[2026-08-18 05:07:20]   저장 완료 (1742405 bytes) → /opt/ha-agent/cardnews-cards/images/hero-livingroom-afternoon.png
+[2026-08-18 05:07:27]   HA 업로드 완료
+[2026-08-18 05:07:29] ▶ hero-livingroom-evening
+[2026-08-18 05:08:05]   저장 완료 (1797046 bytes) → /opt/ha-agent/cardnews-cards/images/hero-livingroom-evening.png
+[2026-08-18 05:08:11]   HA 업로드 완료
+[2026-08-18 05:08:13] ▶ hero-livingroom-night
+[2026-08-18 05:08:43]   저장 완료 (1608748 bytes) → /opt/ha-agent/cardnews-cards/images/hero-livingroom-night.png
+[2026-08-18 05:08:49]   HA 업로드 완료
+[2026-08-18 05:08:51] ▶ hero-bedroom-dawn
+[2026-08-18 05:09:26]   저장 완료 (1497668 bytes) → /opt/ha-agent/cardnews-cards/images/hero-bedroom-dawn.png
+[2026-08-18 05:09:32]   HA 업로드 완료
+[2026-08-18 05:09:34] ▶ hero-bedroom-morning
+[2026-08-18 05:10:05]   저장 완료 (1775016 bytes) → /opt/ha-agent/cardnews-cards/images/hero-bedroom-morning.png
+[2026-08-18 05:10:10]   HA 업로드 완료
+[2026-08-18 05:10:12] ▶ hero-bedroom-afternoon
+[2026-08-18 05:10:48]   저장 완료 (1918443 bytes) → /opt/ha-agent/cardnews-cards/images/hero-bedroom-afternoon.png
+[2026-08-18 05:10:53]   HA 업로드 완료
+[2026-08-18 05:10:55] ▶ hero-bedroom-evening
+[2026-08-18 05:11:26]   저장 완료 (1679721 bytes) → /opt/ha-agent/cardnews-cards/images/hero-bedroom-evening.png
+[2026-08-18 05:11:32]   HA 업로드 완료
+[2026-08-18 05:11:34] ▶ hero-bedroom-night
+[2026-08-18 05:12:10]   저장 완료 (1537406 bytes) → /opt/ha-agent/cardnews-cards/images/hero-bedroom-night.png
+[2026-08-18 05:12:17]   HA 업로드 완료
+[2026-08-18 05:12:19] ▶ hero-kitchen-dawn
+[2026-08-18 05:12:59]   저장 완료 (1660728 bytes) → /opt/ha-agent/cardnews-cards/images/hero-kitchen-dawn.png
+[2026-08-18 05:13:06]   HA 업로드 완료
+[2026-08-18 05:13:08] ▶ hero-kitchen-morning
+[2026-08-18 05:13:43]   저장 완료 (1638334 bytes) → /opt/ha-agent/cardnews-cards/images/hero-kitchen-morning.png
+[2026-08-18 05:13:50]   HA 업로드 완료
+[2026-08-18 05:13:52] ▶ hero-kitchen-afternoon
+[2026-08-18 05:14:17]   저장 완료 (1562116 bytes) → /opt/ha-agent/cardnews-cards/images/hero-kitchen-afternoon.png
+[2026-08-18 05:14:24]   HA 업로드 완료
+[2026-08-18 05:14:26] ▶ hero-kitchen-evening
+[2026-08-18 05:15:06]   저장 완료 (1712624 bytes) → /opt/ha-agent/cardnews-cards/images/hero-kitchen-evening.png
+[2026-08-18 05:15:13]   HA 업로드 완료
+[2026-08-18 05:15:15] ▶ hero-kitchen-night
+[2026-08-18 05:15:50]   저장 완료 (1361682 bytes) → /opt/ha-agent/cardnews-cards/images/hero-kitchen-night.png
+[2026-08-18 05:15:57]   HA 업로드 완료
+[2026-08-18 05:15:59] ▶ hero-smallroom-dawn
+[2026-08-18 05:16:34]   저장 완료 (1628632 bytes) → /opt/ha-agent/cardnews-cards/images/hero-smallroom-dawn.png
+[2026-08-18 05:16:41]   HA 업로드 완료
+[2026-08-18 05:16:43] ▶ hero-smallroom-morning
+[2026-08-18 05:17:18]   저장 완료 (1901925 bytes) → /opt/ha-agent/cardnews-cards/images/hero-smallroom-morning.png
+[2026-08-18 05:17:25]   HA 업로드 완료
+[2026-08-18 05:17:27] ▶ hero-smallroom-afternoon
+[2026-08-18 05:18:08]   저장 완료 (1749799 bytes) → /opt/ha-agent/cardnews-cards/images/hero-smallroom-afternoon.png
+[2026-08-18 05:18:13]   HA 업로드 완료
+[2026-08-18 05:18:15] ▶ hero-smallroom-evening
+[2026-08-18 05:18:46]   저장 완료 (1574638 bytes) → /opt/ha-agent/cardnews-cards/images/hero-smallroom-evening.png
+[2026-08-18 05:18:52]   HA 업로드 완료
+[2026-08-18 05:18:54] ▶ hero-smallroom-night
+[2026-08-18 05:19:29]   저장 완료 (1447765 bytes) → /opt/ha-agent/cardnews-cards/images/hero-smallroom-night.png
+[2026-08-18 05:19:35]   HA 업로드 완료
+[2026-08-18 05:19:37] ▶ hero-bathroom-dawn
+[2026-08-18 05:20:07]   저장 완료 (1591923 bytes) → /opt/ha-agent/cardnews-cards/images/hero-bathroom-dawn.png
+[2026-08-18 05:20:13]   HA 업로드 완료
+[2026-08-18 05:20:15] ▶ hero-bathroom-morning
+[2026-08-18 05:20:50]   저장 완료 (1698602 bytes) → /opt/ha-agent/cardnews-cards/images/hero-bathroom-morning.png
+[2026-08-18 05:20:56]   HA 업로드 완료
+[2026-08-18 05:20:58] ▶ hero-bathroom-afternoon
+[2026-08-18 05:21:28]   저장 완료 (1416386 bytes) → /opt/ha-agent/cardnews-cards/images/hero-bathroom-afternoon.png
+[2026-08-18 05:21:34]   HA 업로드 완료
+[2026-08-18 05:21:36] ▶ hero-bathroom-evening
+[2026-08-18 05:22:11]   저장 완료 (1670497 bytes) → /opt/ha-agent/cardnews-cards/images/hero-bathroom-evening.png
+[2026-08-18 05:22:17]   HA 업로드 완료
+[2026-08-18 05:22:19] ▶ hero-bathroom-night
+[2026-08-18 05:23:00]   저장 완료 (1392530 bytes) → /opt/ha-agent/cardnews-cards/images/hero-bathroom-night.png
+[2026-08-18 05:23:05]   HA 업로드 완료
+[2026-08-18 05:23:07] ▶ hero-powderroom-dawn
+[2026-08-18 05:23:48]   저장 완료 (1789099 bytes) → /opt/ha-agent/cardnews-cards/images/hero-powderroom-dawn.png
+[2026-08-18 05:23:55]   HA 업로드 완료
+[2026-08-18 05:23:57] ▶ hero-powderroom-morning
+[2026-08-18 05:24:32]   저장 완료 (1662416 bytes) → /opt/ha-agent/cardnews-cards/images/hero-powderroom-morning.png
+[2026-08-18 05:24:39]   HA 업로드 완료
+[2026-08-18 05:24:41] ▶ hero-powderroom-afternoon
+[2026-08-18 05:25:22]   저장 완료 (1988357 bytes) → /opt/ha-agent/cardnews-cards/images/hero-powderroom-afternoon.png
+[2026-08-18 05:25:28]   HA 업로드 완료
+[2026-08-18 05:25:30] ▶ hero-powderroom-evening
+[2026-08-18 05:26:10]   저장 완료 (1705766 bytes) → /opt/ha-agent/cardnews-cards/images/hero-powderroom-evening.png
+[2026-08-18 05:26:17]   HA 업로드 완료
+[2026-08-18 05:26:19] ▶ hero-powderroom-night
+[2026-08-18 05:26:55]   저장 완료 (1515068 bytes) → /opt/ha-agent/cardnews-cards/images/hero-powderroom-night.png
+[2026-08-18 05:27:01]   HA 업로드 완료
+[2026-08-18 05:27:03] ▶ hero-balcony-dawn
+[2026-08-18 05:27:33]   저장 완료 (1713112 bytes) → /opt/ha-agent/cardnews-cards/images/hero-balcony-dawn.png
+[2026-08-18 05:27:39]   HA 업로드 완료
+[2026-08-18 05:27:41] ▶ hero-balcony-morning
+[2026-08-18 05:28:16]   저장 완료 (2056120 bytes) → /opt/ha-agent/cardnews-cards/images/hero-balcony-morning.png
+[2026-08-18 05:28:22]   HA 업로드 완료
+[2026-08-18 05:28:24] ▶ hero-balcony-afternoon
+[2026-08-18 05:28:54]   저장 완료 (1980481 bytes) → /opt/ha-agent/cardnews-cards/images/hero-balcony-afternoon.png
+[2026-08-18 05:29:00]   HA 업로드 완료
+[2026-08-18 05:29:02] ▶ hero-balcony-evening
+[2026-08-18 05:29:43]   저장 완료 (1815623 bytes) → /opt/ha-agent/cardnews-cards/images/hero-balcony-evening.png
+[2026-08-18 05:29:48]   HA 업로드 완료
+[2026-08-18 05:29:50] ▶ hero-balcony-night
+[2026-08-18 05:30:26]   저장 완료 (1684724 bytes) → /opt/ha-agent/cardnews-cards/images/hero-balcony-night.png
+[2026-08-18 05:30:32]   HA 업로드 완료
+[2026-08-18 05:30:34] ▶ hero-entrance-dawn
+[2026-08-18 05:31:09]   저장 완료 (1529168 bytes) → /opt/ha-agent/cardnews-cards/images/hero-entrance-dawn.png
+[2026-08-18 05:31:15]   HA 업로드 완료
+[2026-08-18 05:31:17] ▶ hero-entrance-morning
+[2026-08-18 05:31:57]   저장 완료 (1544853 bytes) → /opt/ha-agent/cardnews-cards/images/hero-entrance-morning.png
+[2026-08-18 05:32:03]   HA 업로드 완료
+[2026-08-18 05:32:05] ▶ hero-entrance-afternoon
+[2026-08-18 05:32:35]   저장 완료 (1389387 bytes) → /opt/ha-agent/cardnews-cards/images/hero-entrance-afternoon.png
+[2026-08-18 05:32:41]   HA 업로드 완료
+[2026-08-18 05:32:43] ▶ hero-entrance-evening
+[2026-08-18 05:33:19]   저장 완료 (1573934 bytes) → /opt/ha-agent/cardnews-cards/images/hero-entrance-evening.png
+[2026-08-18 05:33:25]   HA 업로드 완료
+[2026-08-18 05:33:27] ▶ hero-entrance-night
+[2026-08-18 05:33:58]   저장 완료 (1417796 bytes) → /opt/ha-agent/cardnews-cards/images/hero-entrance-night.png
+[2026-08-18 05:34:05]   HA 업로드 완료
+[2026-08-18 05:34:07] ▶ hero-dressroom-dawn
+[2026-08-18 05:34:37]   저장 완료 (1748712 bytes) → /opt/ha-agent/cardnews-cards/images/hero-dressroom-dawn.png
+[2026-08-18 05:34:44]   HA 업로드 완료
+[2026-08-18 05:34:46] ▶ hero-dressroom-morning
+[2026-08-18 05:35:16]   저장 완료 (1775447 bytes) → /opt/ha-agent/cardnews-cards/images/hero-dressroom-morning.png
+[2026-08-18 05:35:23]   HA 업로드 완료
+[2026-08-18 05:35:25] ▶ hero-dressroom-afternoon
+[2026-08-18 05:36:00]   저장 완료 (1759017 bytes) → /opt/ha-agent/cardnews-cards/images/hero-dressroom-afternoon.png
+[2026-08-18 05:36:07]   HA 업로드 완료
+[2026-08-18 05:36:09] ▶ hero-dressroom-evening
+[2026-08-18 05:36:34]   저장 완료 (1650362 bytes) → /opt/ha-agent/cardnews-cards/images/hero-dressroom-evening.png
+[2026-08-18 05:36:41]   HA 업로드 완료
+[2026-08-18 05:36:43] ▶ hero-dressroom-night
+[2026-08-18 05:37:23]   저장 완료 (1566493 bytes) → /opt/ha-agent/cardnews-cards/images/hero-dressroom-night.png
+[2026-08-18 05:37:30]   HA 업로드 완료
+[2026-08-18 05:37:32] === 완료: success=45 skipped=0 total=45 ===
+45/45

@@ -1,0 +1,33 @@
+/* CardNews design tokens */
+:root {
+  --cn-radius: 20px;
+  --cn-radius-inner: 12px;
+  --cn-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  --cn-bg-card: #ffffff;
+  --cn-bg-hero-overlay: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.55));
+  --cn-text-primary: #1a1a1a;
+  --cn-text-secondary: #6b6b6b;
+  --cn-text-hero: #ffffff;
+  --cn-category-color: rgba(255,255,255,0.85);
+  --cn-status-bg: rgba(255,255,255,0.20);
+  --cn-status-text: #ffffff;
+  --cn-status-ok-dot: #34d399;
+  --cn-status-warn-dot: #fbbf24;
+  --cn-status-error-dot: #f87171;
+  --cn-status-info-dot: #60a5fa;
+  --cn-hero-height: 200px;
+  --cn-hero-height-lg: 280px;
+  --cn-font-hero-title: 700 22px/1.2 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --cn-font-hero-subtitle: 500 13px/1.3 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --cn-font-category: 600 11px/1 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --cn-font-status: 500 12px/1 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --cn-font-list-label: 500 14px/1.3 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --cn-font-list-value: 600 14px/1.3 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+.cn-theme-dark {
+  --cn-bg-card: #1c1c1e;
+  --cn-text-primary: #f5f5f5;
+  --cn-text-secondary: #a1a1a6;
+  --cn-shadow: 0 2px 12px rgba(0,0,0,0.4);
+}

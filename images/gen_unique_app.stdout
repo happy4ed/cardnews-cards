@@ -1,0 +1,12 @@
+[2026-08-19 01:20:07] === 시작: total=2 prefix=hero-appliance ===
+[2026-08-19 01:20:09] 로그인 시도...
+[2026-08-19 01:20:11] 로그인 완료
+[2026-08-19 01:20:11] ▶ hero-appliance-live-afternoon
+[2026-08-19 01:21:08]   저장 (1898838 bytes)
+[2026-08-19 01:21:16]   HA scp OK
+[2026-08-19 01:21:20]   TOD fanout OK (hero-appliance-live)
+[2026-08-19 01:21:22] ▶ hero-appliance-monthly-afternoon
+[2026-08-19 01:21:54]   저장 (1404192 bytes)
+[2026-08-19 01:22:01]   HA scp OK
+[2026-08-19 01:22:05]   TOD fanout OK (hero-appliance-monthly)
+[2026-08-19 01:22:07] === 완료: success=2/2 failed=[] ===

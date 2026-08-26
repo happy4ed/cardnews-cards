@@ -1,0 +1,65 @@
+[2026-08-18 05:37:47] === 파이프라인 시작: total=20 ===
+[2026-08-18 05:37:49] 로그인 시도...
+[2026-08-18 05:37:50] 로그인 완료
+[2026-08-18 05:37:50] ▶ hero-vacuum-dawn
+[2026-08-18 05:38:21]   저장 완료 (1648301 bytes) → /opt/ha-agent/cardnews-cards/images/hero-vacuum-dawn.png
+[2026-08-18 05:38:27]   HA 업로드 완료
+[2026-08-18 05:38:29] ▶ hero-vacuum-morning
+[2026-08-18 05:39:00]   저장 완료 (2130543 bytes) → /opt/ha-agent/cardnews-cards/images/hero-vacuum-morning.png
+[2026-08-18 05:39:05]   HA 업로드 완료
+[2026-08-18 05:39:07] ▶ hero-vacuum-afternoon
+[2026-08-18 05:39:43]   저장 완료 (2020108 bytes) → /opt/ha-agent/cardnews-cards/images/hero-vacuum-afternoon.png
+[2026-08-18 05:39:49]   HA 업로드 완료
+[2026-08-18 05:39:51] ▶ hero-vacuum-evening
+[2026-08-18 05:40:22]   저장 완료 (1762079 bytes) → /opt/ha-agent/cardnews-cards/images/hero-vacuum-evening.png
+[2026-08-18 05:40:28]   HA 업로드 완료
+[2026-08-18 05:40:30] ▶ hero-vacuum-night
+[2026-08-18 05:41:05]   저장 완료 (1514377 bytes) → /opt/ha-agent/cardnews-cards/images/hero-vacuum-night.png
+[2026-08-18 05:41:11]   HA 업로드 완료
+[2026-08-18 05:41:13] ▶ hero-summary-lighting-dawn
+[2026-08-18 05:41:48]   저장 완료 (1593700 bytes) → /opt/ha-agent/cardnews-cards/images/hero-summary-lighting-dawn.png
+[2026-08-18 05:41:54]   HA 업로드 완료
+[2026-08-18 05:41:56] ▶ hero-summary-lighting-morning
+[2026-08-18 05:42:32]   저장 완료 (1707246 bytes) → /opt/ha-agent/cardnews-cards/images/hero-summary-lighting-morning.png
+[2026-08-18 05:42:38]   HA 업로드 완료
+[2026-08-18 05:42:40] ▶ hero-summary-lighting-afternoon
+[2026-08-18 05:43:15]   저장 완료 (1578625 bytes) → /opt/ha-agent/cardnews-cards/images/hero-summary-lighting-afternoon.png
+[2026-08-18 05:43:21]   HA 업로드 완료
+[2026-08-18 05:43:23] ▶ hero-summary-lighting-evening
+[2026-08-18 05:44:03]   저장 완료 (1748909 bytes) → /opt/ha-agent/cardnews-cards/images/hero-summary-lighting-evening.png
+[2026-08-18 05:44:09]   HA 업로드 완료
+[2026-08-18 05:44:11] ▶ hero-summary-lighting-night
+[2026-08-18 05:44:42]   저장 완료 (1463280 bytes) → /opt/ha-agent/cardnews-cards/images/hero-summary-lighting-night.png
+[2026-08-18 05:44:49]   HA 업로드 완료
+[2026-08-18 05:44:51] ▶ hero-summary-airquality-dawn
+[2026-08-18 05:45:27]   저장 완료 (1753928 bytes) → /opt/ha-agent/cardnews-cards/images/hero-summary-airquality-dawn.png
+[2026-08-18 05:45:33]   HA 업로드 완료
+[2026-08-18 05:45:35] ▶ hero-summary-airquality-morning
+[2026-08-18 05:46:31]   저장 완료 (2702862 bytes) → /opt/ha-agent/cardnews-cards/images/hero-summary-airquality-morning.png
+[2026-08-18 05:46:38]   HA 업로드 완료
+[2026-08-18 05:46:40] ▶ hero-summary-airquality-afternoon
+[2026-08-18 05:47:31]   저장 완료 (2658375 bytes) → /opt/ha-agent/cardnews-cards/images/hero-summary-airquality-afternoon.png
+[2026-08-18 05:47:39]   HA 업로드 완료
+[2026-08-18 05:47:41] ▶ hero-summary-airquality-evening
+[2026-08-18 05:48:22]   저장 완료 (1823043 bytes) → /opt/ha-agent/cardnews-cards/images/hero-summary-airquality-evening.png
+[2026-08-18 05:48:29]   HA 업로드 완료
+[2026-08-18 05:48:31] ▶ hero-summary-airquality-night
+[2026-08-18 05:49:27]   저장 완료 (2381169 bytes) → /opt/ha-agent/cardnews-cards/images/hero-summary-airquality-night.png
+[2026-08-18 05:49:35]   HA 업로드 완료
+[2026-08-18 05:49:37] ▶ hero-summary-doorlock-dawn
+[2026-08-18 05:50:23]   저장 완료 (1493435 bytes) → /opt/ha-agent/cardnews-cards/images/hero-summary-doorlock-dawn.png
+[2026-08-18 05:50:29]   HA 업로드 완료
+[2026-08-18 05:50:31] ▶ hero-summary-doorlock-morning
+[2026-08-18 05:51:06]   저장 완료 (1873148 bytes) → /opt/ha-agent/cardnews-cards/images/hero-summary-doorlock-morning.png
+[2026-08-18 05:51:12]   HA 업로드 완료
+[2026-08-18 05:51:14] ▶ hero-summary-doorlock-afternoon
+[2026-08-18 05:51:44]   저장 완료 (1416841 bytes) → /opt/ha-agent/cardnews-cards/images/hero-summary-doorlock-afternoon.png
+[2026-08-18 05:51:50]   HA 업로드 완료
+[2026-08-18 05:51:52] ▶ hero-summary-doorlock-evening
+[2026-08-18 05:52:28]   저장 완료 (1552219 bytes) → /opt/ha-agent/cardnews-cards/images/hero-summary-doorlock-evening.png
+[2026-08-18 05:52:34]   HA 업로드 완료
+[2026-08-18 05:52:36] ▶ hero-summary-doorlock-night
+[2026-08-18 05:53:07]   저장 완료 (1459414 bytes) → /opt/ha-agent/cardnews-cards/images/hero-summary-doorlock-night.png
+[2026-08-18 05:53:13]   HA 업로드 완료
+[2026-08-18 05:53:15] === 완료: success=20 skipped=0 total=20 ===
+20/20

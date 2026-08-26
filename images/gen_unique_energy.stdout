@@ -1,0 +1,12 @@
+[2026-08-19 01:18:33] === 시작: total=2 prefix=hero-energy ===
+[2026-08-19 01:18:34] 로그인 시도...
+[2026-08-19 01:18:36] 로그인 완료
+[2026-08-19 01:18:36] ▶ hero-energy-live-afternoon
+[2026-08-19 01:19:09]   저장 (2040481 bytes)
+[2026-08-19 01:19:16]   HA scp OK
+[2026-08-19 01:19:20]   TOD fanout OK (hero-energy-live)
+[2026-08-19 01:19:22] ▶ hero-energy-periods-afternoon
+[2026-08-19 01:19:51]   저장 (1435482 bytes)
+[2026-08-19 01:19:57]   HA scp OK
+[2026-08-19 01:20:01]   TOD fanout OK (hero-energy-periods)
+[2026-08-19 01:20:03] === 완료: success=2/2 failed=[] ===

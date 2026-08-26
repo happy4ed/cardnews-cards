@@ -1,0 +1,16 @@
+[2026-08-19 01:08:39] === 시작: total=3 prefix=hero-summary ===
+[2026-08-19 01:08:41] 로그인 시도...
+[2026-08-19 01:08:43] 로그인 완료
+[2026-08-19 01:08:43] ▶ hero-summary-family-afternoon
+[2026-08-19 01:09:16]   저장 (2175317 bytes)
+[2026-08-19 01:09:24]   HA scp OK
+[2026-08-19 01:09:28]   TOD fanout OK (hero-summary-family)
+[2026-08-19 01:09:30] ▶ hero-summary-energy-afternoon
+[2026-08-19 01:10:07]   저장 (1716434 bytes)
+[2026-08-19 01:10:14]   HA scp OK
+[2026-08-19 01:10:18]   TOD fanout OK (hero-summary-energy)
+[2026-08-19 01:10:20] ▶ hero-summary-tier-afternoon
+[2026-08-19 01:10:52]   저장 (1540039 bytes)
+[2026-08-19 01:10:58]   HA scp OK
+[2026-08-19 01:11:02]   TOD fanout OK (hero-summary-tier)
+[2026-08-19 01:11:04] === 완료: success=3/3 failed=[] ===
