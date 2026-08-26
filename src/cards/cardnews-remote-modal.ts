@@ -181,7 +181,7 @@ export class CardnewsRemoteModal extends LitElement {
     this._call('climate', 'set_fan_mode', { entity_id: this.entity, fan_mode: mode });
   }
 
-  /** Derive room prefix like 'geosil_lg' from 'climate.geosil_lg_eeokeon'. */
+  /** Derive room prefix like 'livingroom_lg' from 'climate.livingroom_lg_ac'. */
   private _acRoomPrefix(): string | null {
     const local = this.entity.split('.')[1] ?? '';
     const m = local.match(/^(.*?_lg)_/);

@@ -2,7 +2,7 @@
   "name": "cardnews-cards",
   "version": "0.10.0",
   "description": "CardNews \u2014 Home Assistant Lovelace card library in card-news style",
-  "author": "Edmund <happy4ed@gmail.com>",
+  "author": "CardNews Cards contributors",
   "license": "MIT",
   "type": "module",
   "scripts": {
@@ -20,5 +20,9 @@
     "rollup": "^4.13.0",
     "tslib": "^2.6.2",
     "typescript": "^5.4.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/happy4ed/cardnews-cards"
   }
 }

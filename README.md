@@ -4,7 +4,7 @@ Home Assistant Lovelace card library in a modern **card-news** style — large
 hero images with overlay labels, category chips, floating status pills, and a
 clean info list below.
 
-Phase 1 ships two cards:
+Ships multiple cards:
 
 | Card | Type | Description |
 |------|------|-------------|
@@ -35,15 +35,15 @@ resources:
 ```yaml
 type: custom:cardnews-hero-info
 category: "MERCEDES-BENZ · GLB"
-title: "비콘 미설치 구역"
-subtitle: "엄마 마지막 운전 · 26년 8월 10일 19:28"
-hero_image: /local/cardnews/car-hero.jpg
-status_text: "주차됨"
+title: "Untracked Area"
+subtitle: "차량 · 마지막 주행 요약"
+hero_image: /local/cardnews/car-hero.jpg  # place under www/cardnews/
+status_text: "PARKED"
 status_color: green
 list:
   - icon: mdi:map-marker
     label: 현재 주차 위치
-    entity: sensor.parking_location
+    entity: sensor.car_location
   - icon: mdi:car
     label: 차량 상태
     entity: binary_sensor.parking
@@ -53,16 +53,16 @@ list:
 
 ```yaml
 type: custom:cardnews-room
-name: 거실
+name: Living Room
 category: LIVING ROOM
-hero_image: /local/cardnews/room-livingroom.jpg
-temp_entity: sensor.geosil_gonggijil_d2c0_temperature
-humidity_entity: sensor.geosil_gonggijil_d2c0_humidity
+hero_image: /local/cardnews/room-livingroom.jpg  # place under www/cardnews/
+temp_entity: sensor.livingroom_temperature
+humidity_entity: sensor.livingroom_humidity
 switches:
-  - entity: switch.geosil_jomyeong_1
-    label: 조명1
-  - entity: switch.geosil_jomyeong_2
-    label: 조명2
+  - entity: switch.livingroom_light_1
+    label: Light 1
+  - entity: switch.livingroom_light_2
+    label: Light 2
 ```
 
 ## Development
