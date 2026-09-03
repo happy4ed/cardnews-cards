@@ -45,6 +45,8 @@ export interface HeroAction {
   entities?: string[];
   labels?: string[];
   icon?: string;
+  /** v0.11 — alternate icon shown when the button is in its "on" (active) state. */
+  active_icon?: string;
   label?: string;
   action_type?: 'toggle' | 'remote_modal' | 'service' | 'light_modal' | 'tv_remote';
   // For remote_modal: 'ac' | 'fan'. For tv_remote: the remote.* entity id

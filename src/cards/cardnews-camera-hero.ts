@@ -26,6 +26,11 @@ export class CardNewsCameraHero extends HeroCardBase {
   @state() private _hasConfig = false;
   @state() private _pollTick = 0;
   @state() private _imgFailed = false;
+  /** v0.11 — URL currently visible. Only updated after a successful preload,
+   * so the previous frame stays on screen while the new one downloads.
+   * Eliminates the white/blank flash between map refreshes. */
+  @state() private _displayedSrc?: string;
+  private _preloadingSrc?: string;
   private _pollTimer?: ReturnType<typeof setInterval>;
 
   public override setConfig(config: unknown): void {
@@ -86,6 +91,28 @@ export class CardNewsCameraHero extends HeroCardBase {
     }
   }
 
+  /** v0.11 — preload next frame off-screen; swap visible src on success. */
+  private _preloadAndSwap(src: string): void {
+    if (this._displayedSrc === src) return;
+    if (this._preloadingSrc === src) return;
+    this._preloadingSrc = src;
+    const img = new Image();
+    img.onload = () => {
+      if (this._preloadingSrc === src) {
+        this._displayedSrc = src;
+        this._preloadingSrc = undefined;
+        this._imgFailed = false;
+      }
+    };
+    img.onerror = () => {
+      if (this._preloadingSrc === src) {
+        this._preloadingSrc = undefined;
+        this._imgFailed = true;
+      }
+    };
+    img.src = src;
+  }
+
   private _renderCameraMedia(): TemplateResult {
     const cfg = this._config;
     const stateObj = this._entity(cfg.camera_entity);
@@ -120,12 +147,16 @@ export class CardNewsCameraHero extends HeroCardBase {
         ? encodeURIComponent(lastUpdated)
         : String(this._pollTick);
       const sep = pic.includes('?') ? '&' : '?';
-      const src = `${pic}${sep}_t=${bust}`;
+      const nextSrc = `${pic}${sep}_t=${bust}`;
+      // v0.11: preload nextSrc off-screen; only swap displayed src on success.
+      // The visible layer keeps the previous frame during download — no flash.
+      this._preloadAndSwap(nextSrc);
+      const visibleSrc = this._displayedSrc ?? nextSrc;
       // Use a background-image div rather than <img>: many image.* sources
       // (e.g. Ecovacs Deebot maps) return SVGs with no intrinsic width/height,
       // which collapse to a tiny sliver under object-fit:contain. background-
       // image + background-size:contain always fills the container correctly.
-      const style = `background-image:url("${src}")`;
+      const style = `background-image:url("${visibleSrc}")`;
       return html`
         <div
           class="cn-cam-img cn-cam-img--contain cn-cam-bg"
@@ -133,15 +164,7 @@ export class CardNewsCameraHero extends HeroCardBase {
           aria-label=${cfg.title}
           style=${style}
         ></div>
-        <img
-          class="cn-cam-img--probe"
-          src=${src}
-          alt=""
-          aria-hidden="true"
-          @error=${() => this._imgFailed = true}
-          @load=${() => this._imgFailed = false}
-        />
-        ${this._imgFailed
+        ${this._imgFailed && !this._displayedSrc
           ? html`
               <div class="cn-cam-fallback cn-cam-fallback--overlay">
                 <ha-icon icon="mdi:image-broken-variant"></ha-icon>

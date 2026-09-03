@@ -554,12 +554,18 @@ export abstract class HeroCardBase extends LitElement {
     const [domain] = (a.entity ?? '').split('.');
     const climateActive = domain === 'climate' && ['cool','heat','fan_only','dry','auto','heat_cool'].includes(state);
     const serviceActive = actionType === 'service' && !!a.active_states && a.active_states.includes(state);
-    const on = state === 'on' || state === 'home' || state === 'open' || state === 'cleaning' || climateActive || serviceActive;
+    // v0.11: service actions light up ONLY when active_states matches. A service
+    // button without active_states stays "off"-styled (it's a pure invoker,
+    // not a state indicator — e.g. vacuum.return_to_base).
+    const on = actionType === 'service'
+      ? serviceActive
+      : (state === 'on' || state === 'home' || state === 'open' || state === 'cleaning' || climateActive);
     // Unified policy: on = cyan; off = translucent white on the glass hero button.
     const color = on ? '#22d3ee' : 'rgba(255,255,255,0.6)';
 
     // Default icon by domain if none provided.
-    let icon = a.icon;
+    // v0.11: if `active_icon` set and button is "on", use it instead of the base icon.
+    let icon = (on && a.active_icon) ? a.active_icon : a.icon;
     if (!icon) {
       if (domain === 'light') icon = 'mdi:lightbulb';
       else if (domain === 'fan') icon = 'mdi:fan';
