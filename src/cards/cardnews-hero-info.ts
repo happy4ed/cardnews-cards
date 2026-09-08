@@ -42,7 +42,7 @@ export class CardNewsHeroInfo extends HeroCardBase {
    * YAML. Complex fields (hero_actions, glow_entities, list beyond calendars)
    * still fall through to HA's built-in YAML view. */
   public static async getConfigElement(): Promise<HTMLElement> {
-    await import('./cardnews-hero-info-editor.js');
+    await import('../editors/cardnews-hero-info-editor.js');
     return document.createElement('cardnews-hero-info-editor');
   }
 

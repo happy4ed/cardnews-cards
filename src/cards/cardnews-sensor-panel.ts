@@ -92,6 +92,12 @@ export class CardNewsSensorPanel extends HeroCardBase {
     this._hasConfig = true;
   }
 
+  /** HA UI Visual Editor. */
+  public static async getConfigElement(): Promise<HTMLElement> {
+    await import('../editors/cardnews-sensor-panel-editor.js');
+    return document.createElement('cardnews-sensor-panel-editor');
+  }
+
   public static getStubConfig(): Partial<CardNewsSensorPanelConfig> {
     return {
       category: 'AIR QUALITY · LIVING ROOM',

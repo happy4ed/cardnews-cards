@@ -69,6 +69,12 @@ export class CardnewsReloadBtn extends LitElement {
   }
 
   getCardSize() { return 1; }
+  /** HA UI Visual Editor. */
+  public static async getConfigElement(): Promise<HTMLElement> {
+    await import('../editors/cardnews-reload-btn-editor.js');
+    return document.createElement('cardnews-reload-btn-editor');
+  }
+
   static getStubConfig() { return {}; }
 }
 

@@ -56,6 +56,12 @@ export class CardNewsCameraHero extends HeroCardBase {
     this._hasConfig = true;
   }
 
+  /** HA UI Visual Editor. */
+  public static async getConfigElement(): Promise<HTMLElement> {
+    await import('../editors/cardnews-camera-hero-editor.js');
+    return document.createElement('cardnews-camera-hero-editor');
+  }
+
   public static getStubConfig(): Partial<CardNewsCameraHeroConfig> {
     return {
       category: 'BEACON NETWORK',

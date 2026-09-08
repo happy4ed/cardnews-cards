@@ -64,6 +64,12 @@ export class CardNewsNavTabs extends LitElement {
     return 1;
   }
 
+  /** HA UI Visual Editor. */
+  public static async getConfigElement(): Promise<HTMLElement> {
+    await import('../editors/cardnews-nav-tabs-editor.js');
+    return document.createElement('cardnews-nav-tabs-editor');
+  }
+
   public static getStubConfig(): Partial<CardNewsNavTabsConfig> {
     return {
       tabs: [

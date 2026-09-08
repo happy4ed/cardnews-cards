@@ -65,11 +65,18 @@ registerCard({
   preview: true,
 });
 
-const version = '0.11.0';
+const version = '0.13.0';
 console.info(
   `%c CARDNEWS %c v${version} `,
   'color:#fff;background:#1a1a1a;padding:2px 6px;border-radius:4px 0 0 4px;font-weight:600',
   'color:#1a1a1a;background:#f5f5f5;padding:2px 6px;border-radius:0 4px 4px 0',
 );
 
-import './cards/cardnews-hero-info-editor.js';
+// Visual editors — imported eagerly so HA's card picker finds them even
+// before a dynamic import resolves.
+import './editors/cardnews-hero-info-editor.js';
+import './editors/cardnews-room-editor.js';
+import './editors/cardnews-camera-hero-editor.js';
+import './editors/cardnews-sensor-panel-editor.js';
+import './editors/cardnews-nav-tabs-editor.js';
+import './editors/cardnews-reload-btn-editor.js';

@@ -35,6 +35,12 @@ export class CardNewsRoom extends HeroCardBase {
     this._hasConfig = true;
   }
 
+  /** HA UI Visual Editor. */
+  public static async getConfigElement(): Promise<HTMLElement> {
+    await import('../editors/cardnews-room-editor.js');
+    return document.createElement('cardnews-room-editor');
+  }
+
   public static getStubConfig(): Partial<CardNewsRoomConfig> {
     return {
       name: '거실',
