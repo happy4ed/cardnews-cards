@@ -71,3 +71,5 @@ console.info(
   'color:#fff;background:#1a1a1a;padding:2px 6px;border-radius:4px 0 0 4px;font-weight:600',
   'color:#1a1a1a;background:#f5f5f5;padding:2px 6px;border-radius:0 4px 4px 0',
 );
+
+import './cards/cardnews-hero-info-editor.js';

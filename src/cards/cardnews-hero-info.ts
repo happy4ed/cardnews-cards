@@ -37,6 +37,15 @@ export class CardNewsHeroInfo extends HeroCardBase {
     this._hasConfig = true;
   }
 
+  /** v0.12 — HA UI Visual Editor. Returns the custom editor element so
+   * users can pick calendars, tweak title/status, etc. without hand-editing
+   * YAML. Complex fields (hero_actions, glow_entities, list beyond calendars)
+   * still fall through to HA's built-in YAML view. */
+  public static async getConfigElement(): Promise<HTMLElement> {
+    await import('./cardnews-hero-info-editor.js');
+    return document.createElement('cardnews-hero-info-editor');
+  }
+
   public static getStubConfig(): Partial<CardNewsHeroInfoConfig> {
     return {
       category: 'LIVING · CLIMATE',
