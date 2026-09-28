@@ -17,6 +17,9 @@ interface NavTabsConfig {
   type: string;
   active?: string;
   tabs: NavTab[];
+  swipe?: boolean;
+  swipe_wrap?: boolean;
+  swipe_threshold?: number;
 }
 
 const TAB_SCHEMA: FormSchemaItem[] = [
@@ -38,11 +41,29 @@ const TAB_LABELS: Record<string, string> = {
   id: '고정 id (선택 — active 매칭용)',
 };
 
-const FORM_SCHEMA: FormSchemaItem[] = [{ name: 'active', selector: { text: {} } }];
+const FORM_SCHEMA: FormSchemaItem[] = [
+  { name: 'active', selector: { text: {} } },
+  {
+    type: 'grid',
+    schema: [
+      { name: 'swipe', selector: { boolean: {} } },
+      { name: 'swipe_wrap', selector: { boolean: {} } },
+    ],
+  },
+  {
+    name: 'swipe_threshold',
+    selector: { number: { min: 20, max: 200, step: 5, mode: 'box' } },
+  },
+];
 
 export class CardNewsNavTabsEditor extends CardNewsEditorBase<NavTabsConfig> {
   protected override get labels(): Record<string, string> {
-    return { active: '강제 활성 탭 (비우면 현재 URL로 자동 판정)' };
+    return {
+      active: '강제 활성 탭 (비우면 현재 URL로 자동 판정)',
+      swipe: '좌우 스와이프로 탭 이동',
+      swipe_wrap: '끝에서 처음으로 순환',
+      swipe_threshold: '스와이프 인식 거리 (px, 기본 60)',
+    };
   }
 
   protected render(): TemplateResult | typeof nothing {
@@ -70,13 +91,23 @@ export class CardNewsNavTabsEditor extends CardNewsEditorBase<NavTabsConfig> {
 
         <ha-form
           .hass=${this.hass}
-          .data=${this._formData(['active'])}
+          .data=${this._swipeFormData()}
           .schema=${FORM_SCHEMA}
           .computeLabel=${this._computeLabel}
           @value-changed=${this._formChanged}
         ></ha-form>
       </div>
     `;
+  }
+
+  /** swipe defaults to on, so show it on even when the key is absent. */
+  private _swipeFormData(): Record<string, unknown> {
+    const data = this._formData(['active', 'swipe_wrap', 'swipe_threshold']) as Record<
+      string,
+      unknown
+    >;
+    data.swipe = this._config?.swipe !== false;
+    return data;
   }
 
   private _tabsChanged = (ev: ValueChangedEvent<Array<Record<string, unknown>>>): void => {

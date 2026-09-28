@@ -38,13 +38,49 @@ interface CardNewsNavTabsConfig {
   type: string;
   active?: string;
   tabs: NavTab[];
+  /** Horizontal swipe on the view moves between tabs. Default true. */
+  swipe?: boolean;
+  /** Swiping past the last/first tab wraps around. Default false. */
+  swipe_wrap?: boolean;
+  /** Minimum horizontal travel in px to count as a swipe. Default 60. */
+  swipe_threshold?: number;
 }
+
+/**
+ * Only one nav-tabs instance may act on a given gesture: HA can keep the
+ * outgoing view's cards mounted during a transition, so two instances would
+ * otherwise navigate twice for one swipe.
+ */
+let lastSwipeNavAt = 0;
+
+/** Elements whose own horizontal gestures must win over tab switching. */
+const SWIPE_BLOCK_TAGS = new Set([
+  'INPUT',
+  'TEXTAREA',
+  'SELECT',
+  'HA-SLIDER',
+  'HA-CONTROL-SLIDER',
+  'HA-CONTROL-CIRCULAR-SLIDER',
+  'HA-MORE-INFO-DIALOG',
+  'HA-DIALOG',
+  'SWIPER-CONTAINER',
+  'HUI-VIEW-BADGES',
+]);
+
+/** Cardnews modals mount at document.body; never switch tabs behind one. */
+const MODAL_SELECTOR =
+  'cardnews-light-modal, cardnews-remote-modal, cardnews-tv-remote-modal, cardnews-event-modal, ha-dialog, dialog[open]';
 
 export class CardNewsNavTabs extends LitElement {
   @property({ attribute: false }) public hass?: unknown;
   @state() private _config?: CardNewsNavTabsConfig;
   @state() private _currentPath: string = '';
   private _locListener?: () => void;
+  private _touchStart?: { x: number; y: number; t: number };
+  private _swipeArmed = false;
+  private _onTouchStart?: (ev: TouchEvent) => void;
+  private _onTouchEnd?: (ev: TouchEvent) => void;
+  private _onTouchCancel?: () => void;
 
   public setConfig(config: unknown): void {
     const cfg = config as Partial<CardNewsNavTabsConfig> | null;
@@ -88,6 +124,7 @@ export class CardNewsNavTabs extends LitElement {
       };
       window.addEventListener('location-changed', this._locListener);
       window.addEventListener('popstate', this._locListener);
+      this._attachSwipe();
     }
   }
 
@@ -97,6 +134,114 @@ export class CardNewsNavTabs extends LitElement {
       window.removeEventListener('location-changed', this._locListener);
       window.removeEventListener('popstate', this._locListener);
     }
+    this._detachSwipe();
+  }
+
+  // ---------------------------------------------------------------- swipe
+
+  private _attachSwipe(): void {
+    if (this._onTouchStart) return;
+    this._onTouchStart = (ev: TouchEvent) => this._handleTouchStart(ev);
+    this._onTouchEnd = (ev: TouchEvent) => this._handleTouchEnd(ev);
+    this._onTouchCancel = () => {
+      this._touchStart = undefined;
+      this._swipeArmed = false;
+    };
+    // Passive: we never preventDefault, so vertical scrolling stays native.
+    window.addEventListener('touchstart', this._onTouchStart, { passive: true });
+    window.addEventListener('touchend', this._onTouchEnd, { passive: true });
+    window.addEventListener('touchcancel', this._onTouchCancel, { passive: true });
+  }
+
+  private _detachSwipe(): void {
+    if (typeof window === 'undefined') return;
+    if (this._onTouchStart) window.removeEventListener('touchstart', this._onTouchStart);
+    if (this._onTouchEnd) window.removeEventListener('touchend', this._onTouchEnd);
+    if (this._onTouchCancel) window.removeEventListener('touchcancel', this._onTouchCancel);
+    this._onTouchStart = undefined;
+    this._onTouchEnd = undefined;
+    this._onTouchCancel = undefined;
+    this._touchStart = undefined;
+    this._swipeArmed = false;
+  }
+
+  private get _swipeEnabled(): boolean {
+    return this._config?.swipe !== false;
+  }
+
+  /** This instance is the one the user can actually see. */
+  private _isVisible(): boolean {
+    const r = this.getBoundingClientRect();
+    return r.width > 0 && r.height > 0;
+  }
+
+  /** True when the gesture started somewhere that owns horizontal movement. */
+  private _startsInBlockedArea(ev: TouchEvent): boolean {
+    if (document.querySelector(MODAL_SELECTOR)) return true;
+    const path = (ev.composedPath?.() ?? []) as EventTarget[];
+    for (const node of path) {
+      if (!(node instanceof HTMLElement)) continue;
+      if (SWIPE_BLOCK_TAGS.has(node.tagName)) return true;
+      if (node.hasAttribute('data-no-swipe')) return true;
+      if (node.scrollWidth - node.clientWidth > 2) {
+        const ox = getComputedStyle(node).overflowX;
+        if (ox === 'auto' || ox === 'scroll') return true;
+      }
+    }
+    return false;
+  }
+
+  private _handleTouchStart(ev: TouchEvent): void {
+    this._touchStart = undefined;
+    this._swipeArmed = false;
+    if (!this._swipeEnabled || !this._config) return;
+    if (ev.touches.length !== 1) return;
+    if (!this._isVisible()) return;
+    if (this._startsInBlockedArea(ev)) return;
+    const t = ev.touches[0];
+    this._touchStart = { x: t.clientX, y: t.clientY, t: Date.now() };
+    this._swipeArmed = true;
+  }
+
+  private _handleTouchEnd(ev: TouchEvent): void {
+    const start = this._touchStart;
+    const armed = this._swipeArmed;
+    this._touchStart = undefined;
+    this._swipeArmed = false;
+    if (!armed || !start || !this._config) return;
+    // A second finger landing mid-gesture (pinch/zoom) disqualifies it.
+    if (ev.touches.length > 0) return;
+    const t = ev.changedTouches[0];
+    if (!t) return;
+    const dx = t.clientX - start.x;
+    const dy = t.clientY - start.y;
+    const dt = Date.now() - start.t;
+    const threshold = Math.max(20, this._config.swipe_threshold ?? 60);
+    if (dt > 800) return;
+    if (Math.abs(dx) < threshold) return;
+    if (Math.abs(dx) < Math.abs(dy) * 1.8) return;
+
+    const now = Date.now();
+    if (now - lastSwipeNavAt < 400) return;
+
+    const target = this._neighbourTab(dx < 0 ? 1 : -1);
+    if (!target) return;
+    lastSwipeNavAt = now;
+    this._navigate(target.path);
+  }
+
+  /** Tab `step` positions from the active one, honouring swipe_wrap. */
+  private _neighbourTab(step: number): NavTab | undefined {
+    const tabs = this._config?.tabs ?? [];
+    if (tabs.length < 2) return undefined;
+    const cur = tabs.findIndex((t) => this._isActive(t));
+    if (cur < 0) return undefined;
+    let next = cur + step;
+    if (next < 0 || next >= tabs.length) {
+      if (!this._config?.swipe_wrap) return undefined;
+      next = (next + tabs.length) % tabs.length;
+    }
+    return tabs[next];
   }
 
   private _isActive(tab: NavTab): boolean {
