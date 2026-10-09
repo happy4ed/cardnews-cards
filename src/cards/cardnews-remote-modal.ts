@@ -303,14 +303,32 @@ export class CardnewsRemoteModal extends LitElement {
     };
   }
 
-  private _numState(entityId?: string): { value: number | null; usable: boolean; min: number; max: number } {
+  /**
+   * number 엔티티의 설정값을 읽는다.
+   *
+   * 기능이 꺼져 있어도 **마지막 설정값은 계속 보여준다** — 지금 몇 도로 맞춰져
+   * 있는지는 꺼져 있을 때도 알아야 하기 때문. 대신 `usable=false` 로 내려서
+   * 호출부가 dim 처리하고 조작을 막게 한다.
+   *
+   * dim 판단 기준은 통합이 내려주는 `mode_on` 속성이다. 그 속성이 없는 옛
+   * 통합(기능이 꺼지면 엔티티를 통째로 `unavailable` 로 만들던 버전)에서는
+   * unavailable 여부로 판단하고, 값은 `fallback` 으로 메운다.
+   */
+  private _numState(
+    entityId?: string,
+    fallback?: number,
+    defMin = 0,
+    defMax = 100,
+  ): { value: number | null; usable: boolean; min: number; max: number } {
     const st = entityId ? this.hass?.states[entityId] : undefined;
-    const usable = !!st && st.state !== 'unavailable' && st.state !== 'unknown';
+    const alive = !!st && st.state !== 'unavailable' && st.state !== 'unknown';
+    const modeOn = st?.attributes?.mode_on as boolean | undefined;
+    const value = alive ? Number(st?.state) : (fallback ?? null);
     return {
-      value: usable ? Number(st?.state) : null,
-      usable,
-      min: Number(st?.attributes.min ?? 0),
-      max: Number(st?.attributes.max ?? 100),
+      value: Number.isFinite(value as number) ? (value as number) : null,
+      usable: alive && modeOn !== false,
+      min: Number(st?.attributes.min ?? defMin),
+      max: Number(st?.attributes.max ?? defMax),
     };
   }
 
@@ -351,8 +369,9 @@ export class CardnewsRemoteModal extends LitElement {
     const modeSt = ids.mode ? this.hass?.states[ids.mode] : undefined;
     const options = (modeSt?.attributes.options as string[] | undefined) ?? [];
     const curMode = modeSt?.state ?? '';
-    const room = this._numState(ids.room);
-    const onsu = this._numState(ids.onsu);
+    // 실내 설정온도는 통합이 unavailable 로 내려도 climate 쪽 target 으로 메운다.
+    const room = this._numState(ids.room, Number(e?.attributes.temperature), 10, 40);
+    const onsu = this._numState(ids.onsu, undefined, 35, 60);
     const awaySt = ids.away ? this.hass?.states[ids.away] : undefined;
     const isAway = awaySt ? awaySt.state === 'on' : e?.state === 'fan_only';
     const isSched = e?.state === 'heat';
@@ -382,8 +401,8 @@ export class CardnewsRemoteModal extends LitElement {
               ?disabled=${!ids.room || !room.usable}
               @click=${() => ids.room && this._boilerBump(ids.room, -1)}
             >−</button>
-            <div class="cn-tempctl__val">
-              ${room.usable ? room.value : '—'}<sup class="cn-tempctl__unit">°C</sup>
+            <div class="cn-tempctl__val ${room.usable ? '' : 'cn-tempctl__val--dim'}">
+              ${room.value ?? '—'}<sup class="cn-tempctl__unit">°C</sup>
             </div>
             <button
               class="cn-btn cn-btn--step"
@@ -435,8 +454,8 @@ export class CardnewsRemoteModal extends LitElement {
                     ?disabled=${!onsu.usable}
                     @click=${() => ids.onsu && this._boilerBump(ids.onsu, -1)}
                   >−</button>
-                  <div class="cn-tempctl__val">
-                    ${onsu.usable ? onsu.value : '—'}<sup class="cn-tempctl__unit">°C</sup>
+                  <div class="cn-tempctl__val ${onsu.usable ? '' : 'cn-tempctl__val--dim'}">
+                    ${onsu.value ?? '—'}<sup class="cn-tempctl__unit">°C</sup>
                   </div>
                   <button
                     class="cn-btn cn-btn--step"
@@ -1297,6 +1316,7 @@ export class CardnewsRemoteModal extends LitElement {
       font-variant-numeric: tabular-nums;
       color: var(--cn-text);
     }
+    .cn-tempctl__val--dim { opacity: 0.35; }
     .cn-tempctl__val small { font-size: 13px; color: var(--cn-text-dim); margin-left: 2px; font-weight: 600; }
     .cn-tempctl__unit {
       font-size: 14px;
