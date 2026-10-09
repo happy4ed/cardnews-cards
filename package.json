@@ -1,6 +1,6 @@
 {
   "name": "cardnews-cards",
-  "version": "0.15.2",
+  "version": "0.15.3",
   "description": "CardNews — Home Assistant Lovelace card library in card-news style",
   "author": "CardNews Cards contributors",
   "license": "MIT",

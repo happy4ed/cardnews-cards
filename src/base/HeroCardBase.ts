@@ -134,8 +134,22 @@ export abstract class HeroCardBase extends LitElement {
   private _tmplUnsubs: Map<string, () => Promise<void>> = new Map();
   private _tmplPending: Set<string> = new Set();
 
+  /**
+   * HA 가 모르는, 우리 미니 엔진에만 있는 필터들.
+   *
+   * v0.10 에서 템플릿 렌더링을 HA 네이티브 구독으로 넘겼는데, 이 필터를 쓰는
+   * 템플릿은 HA 가 `No filter named 'secs_min' found` 로 실패한다. 화면은
+   * 아래 미니 엔진 폴백 덕에 멀쩡했지만 HA 로그에 에러가 계속 쌓였다.
+   * 그래서 이런 템플릿은 아예 HA 로 보내지 않고 로컬에서만 렌더한다.
+   * (hass 가 바뀔 때마다 카드가 다시 그려지므로 값은 계속 최신이다.)
+   */
+  private static readonly LOCAL_ONLY_FILTERS = /\|\s*(?:secs_min|comma|minutes_until)\b/;
+
   protected _renderTemplate(template: string): string {
     if (!template) return '';
+    if (HeroCardBase.LOCAL_ONLY_FILTERS.test(template)) {
+      return evaluateTemplate(template, this.hass);
+    }
     const cached = this._tmplCache.get(template);
     // No hass connection yet — fall back to sync mini-engine so first paint
     // is not blank.
