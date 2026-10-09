@@ -1516,7 +1516,7 @@ export abstract class HeroCardBase extends LitElement {
 
   protected _openRemote(a: HeroAction): void {
     if (!this.hass || !a.entity) return;
-    const kind = (a.remote as ('ac' | 'fan') | undefined) ?? 'ac';
+    const kind = (a.remote as ('ac' | 'fan' | 'boiler') | undefined) ?? 'ac';
     const key = `${kind}:${a.entity}`;
     const existing = this._openRemoteModals.get(key);
     if (existing) {

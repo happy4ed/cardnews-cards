@@ -7,7 +7,130 @@ function t(t,e,i,n){var s,a=arguments.length,o=a<3?e:null===n?n=Object.getOwnPro
           <div class="cn-slider__sheen"></div>
         </div>
       </div>
-    `}_acIsOn(){const t=this._ent();return!!t&&"off"!==t.state&&"unavailable"!==t.state}_acPower(t){const e=this._ent(),i=t?e?.attributes.hvac_modes?.find(t=>"cool"===t)??"cool":"off";this._call("climate","set_hvac_mode",{entity_id:this.entity,hvac_mode:i})}_acSetMode(t){this._call("climate","set_hvac_mode",{entity_id:this.entity,hvac_mode:t})}_acSetTemp(t){this._pendingAcTemp=t,this._pendingAcTempTimer&&window.clearTimeout(this._pendingAcTempTimer),this._pendingAcTempTimer=window.setTimeout(()=>{this._pendingAcTemp=null},4e3),this._call("climate","set_temperature",{entity_id:this.entity,temperature:t})}_acBumpTemp(t){const e=this._ent();if(!e)return;const i=this._pendingAcTemp??(Number(e.attributes.temperature)||24),n=Number(e.attributes.min_temp)||18,s=Number(e.attributes.max_temp)||30,a=Math.max(n,Math.min(s,i+t));this._acSetTemp(a)}_acSetFan(t){this._call("climate","set_fan_mode",{entity_id:this.entity,fan_mode:t})}_acRoomPrefix(){const t=(this.entity.split(".")[1]??"").match(/^(.*?_lg)_/);return t?t[1]:null}_acExtraSwitches(){const t=this._acRoomPrefix();return t&&this.hass?[{suffix:"supsogbaram",label:"숲속바람",icon:"mdi:pine-tree"},{suffix:"kulpaweo",label:"쿨파워",icon:"mdi:snowflake-variant"},{suffix:"jwaubaram",label:"좌우바람",icon:"mdi:arrow-left-right"},{suffix:"sanghabaram",label:"상하바람",icon:"mdi:arrow-up-down"},{suffix:"gonggiceongjeong",label:"공기청정",icon:"mdi:air-purifier"},{suffix:"jadonggeonjo",label:"자동건조",icon:"mdi:hair-dryer"},{suffix:"jeoljeon",label:"절전",icon:"mdi:leaf"}].map(e=>({entity:`switch.${t}_${e.suffix}`,label:e.label,icon:e.icon})).filter(t=>!!this.hass.states[t.entity]):[]}_numAttrs(t){const e=t?this.hass?.states[t]:void 0,i=e?.attributes??{};return{min:Number(i.min??0),max:Number(i.max??12),step:Number(i.step??.5),value:Number(e?.state??0)}}_acTimerEntities(){const t=this._acRoomPrefix();if(!t||!this.hass)return{};const e=this.hass.states,i=`number.${t}_kyeojim_yeyag_sigan`,n=`number.${t}_ggeojim_yeyag_sigan`,s=`button.${t}_kyeojim_yeyag_balsa`,a=`button.${t}_ggeojim_yeyag_balsa`,o=`button.${t}_yeyaghaeje`,r=`number.${t}_yeoldaeya_sigan`,c=`button.${t}_yeoldaeya_balsa`;return{on:e[i]?i:void 0,off:e[n]?n:void 0,onBtn:e[s]?s:void 0,offBtn:e[a]?a:void 0,cancelBtn:e[o]?o:void 0,trop:e[r]?r:void 0,tropBtn:e[c]?c:void 0}}_timerLsKey(t){return`cardnews.timerLocal.${t}`}_setTimerLocal(t,e){this._timerLocal={...this._timerLocal,[t]:e};try{localStorage.setItem(this._timerLsKey(t),String(e))}catch{}}_readTimerLocal(t){if(t in this._timerLocal)return this._timerLocal[t];try{const e=localStorage.getItem(this._timerLsKey(t));if(null!==e&&""!==e)return Number(e)}catch{}return null}_timerDisplayValue(t){const e=this._readTimerLocal(t);return null!==e?e:Number(this.hass?.states[t]?.state??0)}_timerHasChange(t){const e=this._readTimerLocal(t);return null!==e&&e!==Number(this.hass?.states[t]?.state??0)}_applyTimer(t,e){const i=this._timerDisplayValue(t);this._call("number","set_value",{entity_id:t,value:i}),e&&window.setTimeout(()=>this._call("button","press",{entity_id:e}),300);try{localStorage.removeItem(this._timerLsKey(t))}catch{}const{[t]:n,...s}=this._timerLocal;this._timerLocal=s}_renderAc(){const t=this._ent(),e=!!t&&"off"!==t.state&&"unavailable"!==t.state,i=(t?.attributes.hvac_modes??["off","cool","dry","fan_only","auto"]).filter(t=>"off"!==t),n=t?.attributes.fan_modes??["low","mid","high","auto"],s=t?.state??"off",a="off"===s?t?.attributes.hvac_modes?.find(t=>"off"!==t)??"cool":s,o=t?.attributes.fan_mode??"",r=this._pendingAcTemp??(Number(t?.attributes.temperature)||24),c=Number(t?.attributes.min_temp)||18,l=Number(t?.attributes.max_temp)||30,d={cool:"냉방",dry:"제습",fan_only:"송풍",auto:"자동",heat:"난방"},h={cool:"mdi:snowflake",dry:"mdi:water-percent",fan_only:"mdi:fan",auto:"mdi:refresh-auto",heat:"mdi:fire"},p={low:"약",mid:"중",high:"강",auto:"자동"};return K`
+    `}_acIsOn(){const t=this._ent();return!!t&&"off"!==t.state&&"unavailable"!==t.state}_acPower(t){const e=this._ent(),i=t?e?.attributes.hvac_modes?.find(t=>"cool"===t)??"cool":"off";this._call("climate","set_hvac_mode",{entity_id:this.entity,hvac_mode:i})}_acSetMode(t){this._call("climate","set_hvac_mode",{entity_id:this.entity,hvac_mode:t})}_acSetTemp(t){this._pendingAcTemp=t,this._pendingAcTempTimer&&window.clearTimeout(this._pendingAcTempTimer),this._pendingAcTempTimer=window.setTimeout(()=>{this._pendingAcTemp=null},4e3),this._call("climate","set_temperature",{entity_id:this.entity,temperature:t})}_acBumpTemp(t){const e=this._ent();if(!e)return;const i=this._pendingAcTemp??(Number(e.attributes.temperature)||24),n=Number(e.attributes.min_temp)||18,s=Number(e.attributes.max_temp)||30,a=Math.max(n,Math.min(s,i+t));this._acSetTemp(a)}_acSetFan(t){this._call("climate","set_fan_mode",{entity_id:this.entity,fan_mode:t})}_acRoomPrefix(){const t=(this.entity.split(".")[1]??"").match(/^(.*?_lg)_/);return t?t[1]:null}_acExtraSwitches(){const t=this._acRoomPrefix();return t&&this.hass?[{suffix:"supsogbaram",label:"숲속바람",icon:"mdi:pine-tree"},{suffix:"kulpaweo",label:"쿨파워",icon:"mdi:snowflake-variant"},{suffix:"jwaubaram",label:"좌우바람",icon:"mdi:arrow-left-right"},{suffix:"sanghabaram",label:"상하바람",icon:"mdi:arrow-up-down"},{suffix:"gonggiceongjeong",label:"공기청정",icon:"mdi:air-purifier"},{suffix:"jadonggeonjo",label:"자동건조",icon:"mdi:hair-dryer"},{suffix:"jeoljeon",label:"절전",icon:"mdi:leaf"}].map(e=>({entity:`switch.${t}_${e.suffix}`,label:e.label,icon:e.icon})).filter(t=>!!this.hass.states[t.entity]):[]}_numAttrs(t){const e=t?this.hass?.states[t]:void 0,i=e?.attributes??{};return{min:Number(i.min??0),max:Number(i.max??12),step:Number(i.step??.5),value:Number(e?.state??0)}}_acTimerEntities(){const t=this._acRoomPrefix();if(!t||!this.hass)return{};const e=this.hass.states,i=`number.${t}_kyeojim_yeyag_sigan`,n=`number.${t}_ggeojim_yeyag_sigan`,s=`button.${t}_kyeojim_yeyag_balsa`,a=`button.${t}_ggeojim_yeyag_balsa`,o=`button.${t}_yeyaghaeje`,r=`number.${t}_yeoldaeya_sigan`,c=`button.${t}_yeoldaeya_balsa`;return{on:e[i]?i:void 0,off:e[n]?n:void 0,onBtn:e[s]?s:void 0,offBtn:e[a]?a:void 0,cancelBtn:e[o]?o:void 0,trop:e[r]?r:void 0,tropBtn:e[c]?c:void 0}}_timerLsKey(t){return`cardnews.timerLocal.${t}`}_setTimerLocal(t,e){this._timerLocal={...this._timerLocal,[t]:e};try{localStorage.setItem(this._timerLsKey(t),String(e))}catch{}}_readTimerLocal(t){if(t in this._timerLocal)return this._timerLocal[t];try{const e=localStorage.getItem(this._timerLsKey(t));if(null!==e&&""!==e)return Number(e)}catch{}return null}_timerDisplayValue(t){const e=this._readTimerLocal(t);return null!==e?e:Number(this.hass?.states[t]?.state??0)}_timerHasChange(t){const e=this._readTimerLocal(t);return null!==e&&e!==Number(this.hass?.states[t]?.state??0)}_applyTimer(t,e){const i=this._timerDisplayValue(t);this._call("number","set_value",{entity_id:t,value:i}),e&&window.setTimeout(()=>this._call("button","press",{entity_id:e}),300);try{localStorage.removeItem(this._timerLsKey(t))}catch{}const{[t]:n,...s}=this._timerLocal;this._timerLocal=s}_boilerEntities(){const t=this.entity.split(".")[1]??"",e=this.hass?.states??{},i=t=>e[t]?t:void 0;return{mode:i(`select.${t}_operation_mode`),room:i(`number.${t}_room_temp`),onsu:i(`number.${t}_hot_water_temp`),away:i(`switch.${t}_away_mode`),cur:i(`sensor.${t}_current_hot_water`)}}_numState(t){const e=t?this.hass?.states[t]:void 0,i=!!e&&"unavailable"!==e.state&&"unknown"!==e.state;return{value:i?Number(e?.state):null,usable:i,min:Number(e?.attributes.min??0),max:Number(e?.attributes.max??100)}}_boilerPower(t){this.hass?.callService("climate","set_hvac_mode",{entity_id:this.entity,hvac_mode:t?"auto":"off"})}_boilerSetMode(t,e){this.hass?.callService("select","select_option",{entity_id:t,option:e})}_boilerBump(t,e){const{value:i,usable:n,min:s,max:a}=this._numState(t);if(!n||null===i)return;const o=Math.min(a,Math.max(s,i+e));o!==i&&this.hass?.callService("number","set_value",{entity_id:t,value:o})}_boilerToggleSwitch(t,e){this.hass?.callService("switch",e?"turn_on":"turn_off",{entity_id:t})}_boilerSetSchedule(t){this.hass?.callService("climate","set_hvac_mode",{entity_id:this.entity,hvac_mode:t?"heat":"auto"})}_renderBoiler(){const t=this._ent(),e=!!t&&"off"!==t.state&&"unavailable"!==t.state,i=this._boilerEntities(),n=i.mode?this.hass?.states[i.mode]:void 0,s=n?.attributes.options??[],a=n?.state??"",o=this._numState(i.room),r=this._numState(i.onsu),c=i.away?this.hass?.states[i.away]:void 0,l=c?"on"===c.state:"fan_only"===t?.state,d="heat"===t?.state,h=i.cur?this.hass?.states[i.cur]?.state:void 0,p=t?.attributes.current_temperature,m={"실내":"mdi:home-thermometer","온수":"mdi:water-boiler","실내+온수":"mdi:home-plus"};return K`
+      <div class="cn-remote cn-remote--boiler">
+        <!-- 전원 + 실내 설정온도 -->
+        <div class="cn-row cn-row--power">
+          <button
+            class="cn-btn cn-btn--power ${e?"cn-btn--active":""}"
+            @click=${()=>this._boilerPower(!e)}
+            title="전원"
+          >
+            <ha-icon .icon=${"mdi:power"} style="--mdc-icon-size:26px;width:26px;height:26px"></ha-icon>
+          </button>
+          <div class="cn-tempctl">
+            <button
+              class="cn-btn cn-btn--step"
+              ?disabled=${!i.room||!o.usable}
+              @click=${()=>i.room&&this._boilerBump(i.room,-1)}
+            >−</button>
+            <div class="cn-tempctl__val">
+              ${o.usable?o.value:"—"}<sup class="cn-tempctl__unit">°C</sup>
+            </div>
+            <button
+              class="cn-btn cn-btn--step"
+              ?disabled=${!i.room||!o.usable}
+              @click=${()=>i.room&&this._boilerBump(i.room,1)}
+            >+</button>
+          </div>
+        </div>
+
+        <!-- 운전 모드 -->
+        ${i.mode&&s.length?K`
+              <div class="cn-section">
+                <div class="cn-section__label"><span>운전 모드</span></div>
+                <div class="cn-seg">
+                  ${s.map(t=>K`
+                      <button
+                        class="cn-btn cn-btn--seg ${a===t?"cn-btn--active":""}"
+                        ?disabled=${!e}
+                        @click=${()=>this._boilerSetMode(i.mode,t)}
+                      >
+                        <ha-icon
+                          .icon=${m[t]??"mdi:circle-small"}
+                          style="--mdc-icon-size:16px;width:16px;height:16px"
+                        ></ha-icon>
+                        <span>${t}</span>
+                      </button>
+                    `)}
+                </div>
+              </div>
+            `:G}
+
+        <!-- 온수 설정온도 -->
+        ${i.onsu?K`
+              <div class="cn-section">
+                <div class="cn-section__label">
+                  <span>온수 온도</span>
+                  ${void 0!==h&&"unavailable"!==h?K`<span class="cn-section__hint">현재 ${h}°C</span>`:G}
+                </div>
+                <div class="cn-tempctl cn-tempctl--wide">
+                  <button
+                    class="cn-btn cn-btn--step"
+                    ?disabled=${!r.usable}
+                    @click=${()=>i.onsu&&this._boilerBump(i.onsu,-1)}
+                  >−</button>
+                  <div class="cn-tempctl__val">
+                    ${r.usable?r.value:"—"}<sup class="cn-tempctl__unit">°C</sup>
+                  </div>
+                  <button
+                    class="cn-btn cn-btn--step"
+                    ?disabled=${!r.usable}
+                    @click=${()=>i.onsu&&this._boilerBump(i.onsu,1)}
+                  >+</button>
+                </div>
+              </div>
+            `:G}
+
+        <!-- 재실/외출 · 수동/예약 -->
+        <div class="cn-section">
+          <div class="cn-section__label">
+            <span>재실 상태</span>
+            ${void 0!==p?K`<span class="cn-section__hint">실내 ${p}°C</span>`:G}
+          </div>
+          <div class="cn-seg">
+            <button
+              class="cn-btn cn-btn--seg ${l?"":"cn-btn--active"}"
+              ?disabled=${!e}
+              @click=${()=>i.away?this._boilerToggleSwitch(i.away,!1):this.hass?.callService("climate","set_hvac_mode",{entity_id:this.entity,hvac_mode:"auto"})}
+            >
+              <ha-icon .icon=${"mdi:home"} style="--mdc-icon-size:16px;width:16px;height:16px"></ha-icon>
+              <span>재실</span>
+            </button>
+            <button
+              class="cn-btn cn-btn--seg ${l?"cn-btn--active":""}"
+              ?disabled=${!e}
+              @click=${()=>i.away?this._boilerToggleSwitch(i.away,!0):this.hass?.callService("climate","set_hvac_mode",{entity_id:this.entity,hvac_mode:"fan_only"})}
+            >
+              <ha-icon .icon=${"mdi:walk"} style="--mdc-icon-size:16px;width:16px;height:16px"></ha-icon>
+              <span>외출</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="cn-section">
+          <div class="cn-section__label"><span>운전 방식</span></div>
+          <div class="cn-seg">
+            <button
+              class="cn-btn cn-btn--seg ${d?"":"cn-btn--active"}"
+              ?disabled=${!e}
+              @click=${()=>this._boilerSetSchedule(!1)}
+            >
+              <ha-icon .icon=${"mdi:pencil"} style="--mdc-icon-size:16px;width:16px;height:16px"></ha-icon>
+              <span>수동</span>
+            </button>
+            <button
+              class="cn-btn cn-btn--seg ${d?"cn-btn--active":""}"
+              ?disabled=${!e}
+              @click=${()=>this._boilerSetSchedule(!0)}
+            >
+              <ha-icon .icon=${"mdi:clock-outline"} style="--mdc-icon-size:16px;width:16px;height:16px"></ha-icon>
+              <span>예약</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    `}_renderAc(){const t=this._ent(),e=!!t&&"off"!==t.state&&"unavailable"!==t.state,i=(t?.attributes.hvac_modes??["off","cool","dry","fan_only","auto"]).filter(t=>"off"!==t),n=t?.attributes.fan_modes??["low","mid","high","auto"],s=t?.state??"off",a="off"===s?t?.attributes.hvac_modes?.find(t=>"off"!==t)??"cool":s,o=t?.attributes.fan_mode??"",r=this._pendingAcTemp??(Number(t?.attributes.temperature)||24),c=Number(t?.attributes.min_temp)||18,l=Number(t?.attributes.max_temp)||30,d={cool:"냉방",dry:"제습",fan_only:"송풍",auto:"자동",heat:"난방"},h={cool:"mdi:snowflake",dry:"mdi:water-percent",fan_only:"mdi:fan",auto:"mdi:refresh-auto",heat:"mdi:fire"},p={low:"약",mid:"중",high:"강",auto:"자동"};return K`
       <div class="cn-remote cn-remote--ac">
         <!-- Power + temp -->
         <div class="cn-row cn-row--power">
@@ -238,13 +361,13 @@ function t(t,e,i,n){var s,a=arguments.length,o=a<3?e:null===n?n=Object.getOwnPro
             `:G}
           `})()}
       </div>
-    `}render(){const t=this.deviceName||("ac"===this.kind?"에어컨":"선풍기");return K`
+    `}render(){const t=this.deviceName||{ac:"에어컨",fan:"선풍기",boiler:"보일러"}[this.kind]||"리모컨";return K`
       <div class="cn-modal__backdrop ${this._closing?"cn-modal__backdrop--closing":""}" @click=${this._onBackdrop}>
         <div class="cn-modal ${this._closing?"cn-modal--closing":""}" role="dialog" aria-modal="true" aria-label=${t}>
           <div class="cn-modal__head">
             <div class="cn-modal__title">
               <ha-icon
-                .icon=${"ac"===this.kind?"mdi:air-conditioner":"mdi:fan"}
+                .icon=${{ac:"mdi:air-conditioner",fan:"mdi:fan",boiler:"mdi:water-boiler"}[this.kind]??"mdi:remote"}
                 style="--mdc-icon-size:18px;width:18px;height:18px"
               ></ha-icon>
               <span>${t}</span>
@@ -254,7 +377,7 @@ function t(t,e,i,n){var s,a=arguments.length,o=a<3?e:null===n?n=Object.getOwnPro
             </button>
           </div>
           <div class="cn-modal__body">
-            ${"ac"===this.kind?this._renderAc():this._renderFan()}
+            ${"boiler"===this.kind?this._renderBoiler():"ac"===this.kind?this._renderAc():this._renderFan()}
           </div>
         </div>
       </div>
@@ -578,6 +701,9 @@ function t(t,e,i,n){var s,a=arguments.length,o=a<3?e:null===n?n=Object.getOwnPro
         0 6px 16px rgba(0,0,0,0.24),
         inset 0 1px 0 rgba(255,255,255,0.18);
     }
+
+
+    .cn-tempctl--wide { width: 100%; justify-content: center; }
     .cn-tempctl--hint {
       grid-template-columns: 1fr;
       padding: 14px;
@@ -3802,7 +3928,7 @@ function t(t,e,i,n){var s,a=arguments.length,o=a<3?e:null===n?n=Object.getOwnPro
     ha-form {
       display: block;
     }
-  `,t([gt({attribute:!1})],fe.prototype,"hass",void 0),t([_t()],fe.prototype,"_config",void 0);const ve=[{name:"entity",selector:{entity:{}},required:!0},{type:"grid",schema:[{name:"icon",selector:{icon:{}}},{name:"active_icon",selector:{icon:{}}}]},{type:"grid",schema:[{name:"label",selector:{text:{}}},{name:"action_type",selector:{select:{mode:"dropdown",options:[{value:"toggle",label:"toggle (켜기/끄기)"},{value:"service",label:"service (서비스 호출)"},{value:"light_modal",label:"light_modal (조명 모달)"},{value:"remote_modal",label:"remote_modal (에어컨/선풍기 리모컨)"},{value:"tv_remote",label:"tv_remote (TV 리모컨)"}]}}}]},{type:"expandable",name:"",title:"service / remote 옵션",icon:"mdi:tune",schema:[{name:"service",selector:{text:{}}},{name:"toggle_service",selector:{text:{}}},{name:"remote",selector:{text:{}}},{name:"tv_entity",selector:{entity:{filter:[{domain:"media_player"}]}}},{name:"volume_entity",selector:{entity:{filter:[{domain:"media_player"}]}}},{name:"spin_when_active",selector:{boolean:{}}}]}],ye={entity:"Entity",icon:"아이콘",active_icon:"켜짐 아이콘",label:"라벨",action_type:"동작 방식",service:"서비스 (예: vacuum.start)",toggle_service:"반대 동작 서비스",remote:"리모컨 종류 ('ac' / 'fan' / remote.* entity)",tv_entity:"TV media_player",volume_entity:"볼륨 media_player",spin_when_active:"동작 중 아이콘 강조"},xe=[{value:"value",label:"값 (value)"},{value:"switch",label:"스위치 (switch)"},{value:"slider",label:"슬라이더 (slider)"},{value:"bar",label:"막대 그래프 (bar)"},{value:"select",label:"드롭다운 (select)"},{value:"light",label:"조명 (light)"},{value:"volume",label:"볼륨 (volume)"},{value:"forecast",label:"날씨 예보 (forecast)"},{value:"balls",label:"로또 번호 (balls)"},{value:"calendar_events",label:"캘린더 일정 (calendar_events)"},{value:"header",label:"구분 헤더 (header)"}],we=[{type:"grid",schema:[{name:"label",selector:{text:{}}},{name:"icon",selector:{icon:{}}}]}];function $e(t){switch(t){case"switch":return[{name:"entity",selector:{entity:{filter:[{domain:"switch"},{domain:"light"},{domain:"fan"},{domain:"input_boolean"}]}},required:!0},{name:"light_entities",selector:{entity:{multiple:!0,filter:[{domain:"light"}]}}}];case"slider":return[{name:"entity",selector:{entity:{}},required:!0},{type:"grid",schema:[{name:"min",selector:{number:{mode:"box",step:"any"}}},{name:"max",selector:{number:{mode:"box",step:"any"}}},{name:"step",selector:{number:{mode:"box",step:"any"}}},{name:"unit",selector:{text:{}}}]},{name:"service",selector:{text:{}}}];case"bar":return[{name:"entity",selector:{entity:{}}},{type:"grid",schema:[{name:"max",selector:{number:{mode:"box",step:"any"}}},{name:"unit",selector:{text:{}}},{name:"color",selector:{text:{}}}]}];case"select":return[{name:"entity",selector:{entity:{filter:[{domain:"input_select"},{domain:"select"}]}},required:!0}];case"light":return[{name:"entity",selector:{entity:{filter:[{domain:"light"}]}}},{name:"entities",selector:{entity:{multiple:!0,filter:[{domain:"light"}]}}},{name:"force_color_button",selector:{boolean:{}}}];case"volume":return[{name:"entity",selector:{entity:{filter:[{domain:"media_player"}]}},required:!0},{name:"mute",selector:{boolean:{}}}];case"forecast":return[{name:"entity",selector:{entity:{filter:[{domain:"weather"}]}},required:!0},{name:"days",selector:{number:{mode:"box",min:1,max:10}}}];case"balls":return[{name:"entity",selector:{entity:{filter:[{domain:"sensor"}]}},required:!0}];case"calendar_events":return[{name:"entities",selector:{entity:{multiple:!0,filter:[{domain:"calendar"}]}},required:!0},{type:"grid",schema:[{name:"days_before",selector:{number:{mode:"box",min:0,max:60}}},{name:"days_after",selector:{number:{mode:"box",min:0,max:60}}},{name:"visible_rows",selector:{number:{mode:"box",min:1,max:20}}},{name:"max",selector:{number:{mode:"box",min:1,max:200}}}]},{type:"grid",schema:[{name:"group_by_day",selector:{boolean:{}}},{name:"show_description",selector:{boolean:{}}}]}];case"header":return[{name:"text",selector:{text:{}}}];default:return[{name:"entity",selector:{entity:{}}},{type:"grid",schema:[{name:"unit",selector:{text:{}}},{name:"value",selector:{text:{}}}]}]}}const ke={type:"expandable",name:"",title:"고급",icon:"mdi:tune",schema:[{type:"grid",schema:[{name:"icon_color",selector:{text:{}}},{name:"always_show",selector:{boolean:{}}}]}]},Se={label:"라벨",icon:"아이콘",entity:"Entity",entities:"Entity 목록",unit:"단위",value:"고정 값",min:"최소",max:"최대",step:"증감폭",service:"서비스 (선택)",color:"색 (hex)",days:"표시 일수",days_before:"이전 며칠",days_after:"이후 며칠",visible_rows:"보이는 줄 수",group_by_day:"날짜별 묶기",show_description:"설명 표시",text:"헤더 텍스트",mute:"음소거 버튼",light_entities:"연결 조명 (선택)",force_color_button:"색상 버튼 강제 표시",icon_color:"아이콘 색 (hex 또는 auto)",always_show:"값이 없어도 항상 표시"};class Ce extends dt{constructor(){super(...arguments),this.rows=[],this._open={},this._computeLabel=t=>t.title?t.title:Se[t.name]??t.name,this._addRow=t=>{t.stopPropagation();const e=t.detail.value;if(!e)return;const i=[...this.rows??[]],n={type:e};"calendar_events"===e&&(n.entities=[]),i.push(n),this._open={...this._open,[i.length-1]:!0},this._emit(i)}}get _types(){if(!this.allowedTypes)return xe;const t=new Set(this.allowedTypes);return xe.filter(e=>t.has(e.value))}render(){if(!this.hass)return G;const t=this.rows??[];return K`
+  `,t([gt({attribute:!1})],fe.prototype,"hass",void 0),t([_t()],fe.prototype,"_config",void 0);const ve=[{name:"entity",selector:{entity:{}},required:!0},{type:"grid",schema:[{name:"icon",selector:{icon:{}}},{name:"active_icon",selector:{icon:{}}}]},{type:"grid",schema:[{name:"label",selector:{text:{}}},{name:"action_type",selector:{select:{mode:"dropdown",options:[{value:"toggle",label:"toggle (켜기/끄기)"},{value:"service",label:"service (서비스 호출)"},{value:"light_modal",label:"light_modal (조명 모달)"},{value:"remote_modal",label:"remote_modal (에어컨/선풍기/보일러 리모컨)"},{value:"tv_remote",label:"tv_remote (TV 리모컨)"}]}}}]},{type:"expandable",name:"",title:"service / remote 옵션",icon:"mdi:tune",schema:[{name:"service",selector:{text:{}}},{name:"toggle_service",selector:{text:{}}},{name:"remote",selector:{text:{}}},{name:"tv_entity",selector:{entity:{filter:[{domain:"media_player"}]}}},{name:"volume_entity",selector:{entity:{filter:[{domain:"media_player"}]}}},{name:"spin_when_active",selector:{boolean:{}}}]}],ye={entity:"Entity",icon:"아이콘",active_icon:"켜짐 아이콘",label:"라벨",action_type:"동작 방식",service:"서비스 (예: vacuum.start)",toggle_service:"반대 동작 서비스",remote:"리모컨 종류 ('ac' / 'fan' / 'boiler' / remote.* entity)",tv_entity:"TV media_player",volume_entity:"볼륨 media_player",spin_when_active:"동작 중 아이콘 강조"},xe=[{value:"value",label:"값 (value)"},{value:"switch",label:"스위치 (switch)"},{value:"slider",label:"슬라이더 (slider)"},{value:"bar",label:"막대 그래프 (bar)"},{value:"select",label:"드롭다운 (select)"},{value:"light",label:"조명 (light)"},{value:"volume",label:"볼륨 (volume)"},{value:"forecast",label:"날씨 예보 (forecast)"},{value:"balls",label:"로또 번호 (balls)"},{value:"calendar_events",label:"캘린더 일정 (calendar_events)"},{value:"header",label:"구분 헤더 (header)"}],we=[{type:"grid",schema:[{name:"label",selector:{text:{}}},{name:"icon",selector:{icon:{}}}]}];function $e(t){switch(t){case"switch":return[{name:"entity",selector:{entity:{filter:[{domain:"switch"},{domain:"light"},{domain:"fan"},{domain:"input_boolean"}]}},required:!0},{name:"light_entities",selector:{entity:{multiple:!0,filter:[{domain:"light"}]}}}];case"slider":return[{name:"entity",selector:{entity:{}},required:!0},{type:"grid",schema:[{name:"min",selector:{number:{mode:"box",step:"any"}}},{name:"max",selector:{number:{mode:"box",step:"any"}}},{name:"step",selector:{number:{mode:"box",step:"any"}}},{name:"unit",selector:{text:{}}}]},{name:"service",selector:{text:{}}}];case"bar":return[{name:"entity",selector:{entity:{}}},{type:"grid",schema:[{name:"max",selector:{number:{mode:"box",step:"any"}}},{name:"unit",selector:{text:{}}},{name:"color",selector:{text:{}}}]}];case"select":return[{name:"entity",selector:{entity:{filter:[{domain:"input_select"},{domain:"select"}]}},required:!0}];case"light":return[{name:"entity",selector:{entity:{filter:[{domain:"light"}]}}},{name:"entities",selector:{entity:{multiple:!0,filter:[{domain:"light"}]}}},{name:"force_color_button",selector:{boolean:{}}}];case"volume":return[{name:"entity",selector:{entity:{filter:[{domain:"media_player"}]}},required:!0},{name:"mute",selector:{boolean:{}}}];case"forecast":return[{name:"entity",selector:{entity:{filter:[{domain:"weather"}]}},required:!0},{name:"days",selector:{number:{mode:"box",min:1,max:10}}}];case"balls":return[{name:"entity",selector:{entity:{filter:[{domain:"sensor"}]}},required:!0}];case"calendar_events":return[{name:"entities",selector:{entity:{multiple:!0,filter:[{domain:"calendar"}]}},required:!0},{type:"grid",schema:[{name:"days_before",selector:{number:{mode:"box",min:0,max:60}}},{name:"days_after",selector:{number:{mode:"box",min:0,max:60}}},{name:"visible_rows",selector:{number:{mode:"box",min:1,max:20}}},{name:"max",selector:{number:{mode:"box",min:1,max:200}}}]},{type:"grid",schema:[{name:"group_by_day",selector:{boolean:{}}},{name:"show_description",selector:{boolean:{}}}]}];case"header":return[{name:"text",selector:{text:{}}}];default:return[{name:"entity",selector:{entity:{}}},{type:"grid",schema:[{name:"unit",selector:{text:{}}},{name:"value",selector:{text:{}}}]}]}}const ke={type:"expandable",name:"",title:"고급",icon:"mdi:tune",schema:[{type:"grid",schema:[{name:"icon_color",selector:{text:{}}},{name:"always_show",selector:{boolean:{}}}]}]},Se={label:"라벨",icon:"아이콘",entity:"Entity",entities:"Entity 목록",unit:"단위",value:"고정 값",min:"최소",max:"최대",step:"증감폭",service:"서비스 (선택)",color:"색 (hex)",days:"표시 일수",days_before:"이전 며칠",days_after:"이후 며칠",visible_rows:"보이는 줄 수",group_by_day:"날짜별 묶기",show_description:"설명 표시",text:"헤더 텍스트",mute:"음소거 버튼",light_entities:"연결 조명 (선택)",force_color_button:"색상 버튼 강제 표시",icon_color:"아이콘 색 (hex 또는 auto)",always_show:"값이 없어도 항상 표시"};class Ce extends dt{constructor(){super(...arguments),this.rows=[],this._open={},this._computeLabel=t=>t.title?t.title:Se[t.name]??t.name,this._addRow=t=>{t.stopPropagation();const e=t.detail.value;if(!e)return;const i=[...this.rows??[]],n={type:e};"calendar_events"===e&&(n.entities=[]),i.push(n),this._open={...this._open,[i.length-1]:!0},this._emit(i)}}get _types(){if(!this.allowedTypes)return xe;const t=new Set(this.allowedTypes);return xe.filter(e=>t.has(e.value))}render(){if(!this.hass)return G;const t=this.rows??[];return K`
       <div class="rows">
         ${t.map((t,e)=>this._renderRow(t,e))}
         ${0===t.length?K`<div class="empty">행이 없습니다. 아래에서 추가하세요.</div>`:G}

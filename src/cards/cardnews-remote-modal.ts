@@ -7,7 +7,7 @@ const PRETENDARD_HREF =
 const FONT_IMPORT = unsafeCSS(`@import url('${PRETENDARD_HREF}');`);
 const FONT_STACK = `'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', system-ui, sans-serif`;
 
-export type RemoteKind = 'ac' | 'fan';
+export type RemoteKind = 'ac' | 'fan' | 'boiler';
 
 @customElement('cardnews-remote-modal')
 export class CardnewsRemoteModal extends LitElement {
@@ -279,6 +279,236 @@ export class CardnewsRemoteModal extends LitElement {
     try { localStorage.removeItem(this._timerLsKey(numberEntity)); } catch {}
     const { [numberEntity]: _, ...rest } = this._timerLocal;
     this._timerLocal = rest;
+  }
+
+  // ---------------------------------------------------------------- boiler
+
+  /** 보일러(SiHAS BCM) 관련 엔티티. climate entity_id 에서 규칙대로 유도한다. */
+  private _boilerEntities(): {
+    mode?: string;
+    room?: string;
+    onsu?: string;
+    away?: string;
+    cur?: string;
+  } {
+    const base = this.entity.split('.')[1] ?? '';
+    const states = this.hass?.states ?? {};
+    const pick = (id: string): string | undefined => (states[id] ? id : undefined);
+    return {
+      mode: pick(`select.${base}_operation_mode`),
+      room: pick(`number.${base}_room_temp`),
+      onsu: pick(`number.${base}_hot_water_temp`),
+      away: pick(`switch.${base}_away_mode`),
+      cur: pick(`sensor.${base}_current_hot_water`),
+    };
+  }
+
+  private _numState(entityId?: string): { value: number | null; usable: boolean; min: number; max: number } {
+    const st = entityId ? this.hass?.states[entityId] : undefined;
+    const usable = !!st && st.state !== 'unavailable' && st.state !== 'unknown';
+    return {
+      value: usable ? Number(st?.state) : null,
+      usable,
+      min: Number(st?.attributes.min ?? 0),
+      max: Number(st?.attributes.max ?? 100),
+    };
+  }
+
+  private _boilerPower(on: boolean): void {
+    this.hass?.callService('climate', 'set_hvac_mode', {
+      entity_id: this.entity,
+      hvac_mode: on ? 'auto' : 'off',
+    });
+  }
+
+  private _boilerSetMode(selEntity: string, option: string): void {
+    this.hass?.callService('select', 'select_option', { entity_id: selEntity, option });
+  }
+
+  private _boilerBump(entityId: string, delta: number): void {
+    const { value, usable, min, max } = this._numState(entityId);
+    if (!usable || value === null) return;
+    const next = Math.min(max, Math.max(min, value + delta));
+    if (next === value) return;
+    this.hass?.callService('number', 'set_value', { entity_id: entityId, value: next });
+  }
+
+  private _boilerToggleSwitch(entityId: string, on: boolean): void {
+    this.hass?.callService('switch', on ? 'turn_on' : 'turn_off', { entity_id: entityId });
+  }
+
+  private _boilerSetSchedule(scheduled: boolean): void {
+    this.hass?.callService('climate', 'set_hvac_mode', {
+      entity_id: this.entity,
+      hvac_mode: scheduled ? 'heat' : 'auto',
+    });
+  }
+
+  private _renderBoiler(): TemplateResult {
+    const e = this._ent();
+    const isOn = !!e && e.state !== 'off' && e.state !== 'unavailable';
+    const ids = this._boilerEntities();
+    const modeSt = ids.mode ? this.hass?.states[ids.mode] : undefined;
+    const options = (modeSt?.attributes.options as string[] | undefined) ?? [];
+    const curMode = modeSt?.state ?? '';
+    const room = this._numState(ids.room);
+    const onsu = this._numState(ids.onsu);
+    const awaySt = ids.away ? this.hass?.states[ids.away] : undefined;
+    const isAway = awaySt ? awaySt.state === 'on' : e?.state === 'fan_only';
+    const isSched = e?.state === 'heat';
+    const curOnsu = ids.cur ? this.hass?.states[ids.cur]?.state : undefined;
+    const roomCur = e?.attributes.current_temperature;
+
+    const modeIcon: Record<string, string> = {
+      '실내': 'mdi:home-thermometer',
+      '온수': 'mdi:water-boiler',
+      '실내+온수': 'mdi:home-plus',
+    };
+
+    return html`
+      <div class="cn-remote cn-remote--boiler">
+        <!-- 전원 + 실내 설정온도 -->
+        <div class="cn-row cn-row--power">
+          <button
+            class="cn-btn cn-btn--power ${isOn ? 'cn-btn--active' : ''}"
+            @click=${() => this._boilerPower(!isOn)}
+            title="전원"
+          >
+            <ha-icon .icon=${'mdi:power'} style="--mdc-icon-size:26px;width:26px;height:26px"></ha-icon>
+          </button>
+          <div class="cn-tempctl">
+            <button
+              class="cn-btn cn-btn--step"
+              ?disabled=${!ids.room || !room.usable}
+              @click=${() => ids.room && this._boilerBump(ids.room, -1)}
+            >−</button>
+            <div class="cn-tempctl__val">
+              ${room.usable ? room.value : '—'}<sup class="cn-tempctl__unit">°C</sup>
+            </div>
+            <button
+              class="cn-btn cn-btn--step"
+              ?disabled=${!ids.room || !room.usable}
+              @click=${() => ids.room && this._boilerBump(ids.room, 1)}
+            >+</button>
+          </div>
+        </div>
+
+        <!-- 운전 모드 -->
+        ${ids.mode && options.length
+          ? html`
+              <div class="cn-section">
+                <div class="cn-section__label"><span>운전 모드</span></div>
+                <div class="cn-seg">
+                  ${options.map(
+                    (o) => html`
+                      <button
+                        class="cn-btn cn-btn--seg ${curMode === o ? 'cn-btn--active' : ''}"
+                        ?disabled=${!isOn}
+                        @click=${() => this._boilerSetMode(ids.mode as string, o)}
+                      >
+                        <ha-icon
+                          .icon=${modeIcon[o] ?? 'mdi:circle-small'}
+                          style="--mdc-icon-size:16px;width:16px;height:16px"
+                        ></ha-icon>
+                        <span>${o}</span>
+                      </button>
+                    `,
+                  )}
+                </div>
+              </div>
+            `
+          : nothing}
+
+        <!-- 온수 설정온도 -->
+        ${ids.onsu
+          ? html`
+              <div class="cn-section">
+                <div class="cn-section__label">
+                  <span>온수 온도</span>
+                  ${curOnsu !== undefined && curOnsu !== 'unavailable'
+                    ? html`<span class="cn-section__hint">현재 ${curOnsu}°C</span>`
+                    : nothing}
+                </div>
+                <div class="cn-tempctl cn-tempctl--wide">
+                  <button
+                    class="cn-btn cn-btn--step"
+                    ?disabled=${!onsu.usable}
+                    @click=${() => ids.onsu && this._boilerBump(ids.onsu, -1)}
+                  >−</button>
+                  <div class="cn-tempctl__val">
+                    ${onsu.usable ? onsu.value : '—'}<sup class="cn-tempctl__unit">°C</sup>
+                  </div>
+                  <button
+                    class="cn-btn cn-btn--step"
+                    ?disabled=${!onsu.usable}
+                    @click=${() => ids.onsu && this._boilerBump(ids.onsu, 1)}
+                  >+</button>
+                </div>
+              </div>
+            `
+          : nothing}
+
+        <!-- 재실/외출 · 수동/예약 -->
+        <div class="cn-section">
+          <div class="cn-section__label">
+            <span>재실 상태</span>
+            ${roomCur !== undefined ? html`<span class="cn-section__hint">실내 ${roomCur}°C</span>` : nothing}
+          </div>
+          <div class="cn-seg">
+            <button
+              class="cn-btn cn-btn--seg ${!isAway ? 'cn-btn--active' : ''}"
+              ?disabled=${!isOn}
+              @click=${() =>
+                ids.away
+                  ? this._boilerToggleSwitch(ids.away, false)
+                  : this.hass?.callService('climate', 'set_hvac_mode', {
+                      entity_id: this.entity,
+                      hvac_mode: 'auto',
+                    })}
+            >
+              <ha-icon .icon=${'mdi:home'} style="--mdc-icon-size:16px;width:16px;height:16px"></ha-icon>
+              <span>재실</span>
+            </button>
+            <button
+              class="cn-btn cn-btn--seg ${isAway ? 'cn-btn--active' : ''}"
+              ?disabled=${!isOn}
+              @click=${() =>
+                ids.away
+                  ? this._boilerToggleSwitch(ids.away, true)
+                  : this.hass?.callService('climate', 'set_hvac_mode', {
+                      entity_id: this.entity,
+                      hvac_mode: 'fan_only',
+                    })}
+            >
+              <ha-icon .icon=${'mdi:walk'} style="--mdc-icon-size:16px;width:16px;height:16px"></ha-icon>
+              <span>외출</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="cn-section">
+          <div class="cn-section__label"><span>운전 방식</span></div>
+          <div class="cn-seg">
+            <button
+              class="cn-btn cn-btn--seg ${!isSched ? 'cn-btn--active' : ''}"
+              ?disabled=${!isOn}
+              @click=${() => this._boilerSetSchedule(false)}
+            >
+              <ha-icon .icon=${'mdi:pencil'} style="--mdc-icon-size:16px;width:16px;height:16px"></ha-icon>
+              <span>수동</span>
+            </button>
+            <button
+              class="cn-btn cn-btn--seg ${isSched ? 'cn-btn--active' : ''}"
+              ?disabled=${!isOn}
+              @click=${() => this._boilerSetSchedule(true)}
+            >
+              <ha-icon .icon=${'mdi:clock-outline'} style="--mdc-icon-size:16px;width:16px;height:16px"></ha-icon>
+              <span>예약</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
   }
 
   private _renderAc(): TemplateResult {
@@ -688,14 +918,20 @@ export class CardnewsRemoteModal extends LitElement {
   }
 
   render(): TemplateResult {
-    const title = this.deviceName || (this.kind === 'ac' ? '에어컨' : '선풍기');
+    const kindTitle: Record<string, string> = { ac: '에어컨', fan: '선풍기', boiler: '보일러' };
+    const kindIcon: Record<string, string> = {
+      ac: 'mdi:air-conditioner',
+      fan: 'mdi:fan',
+      boiler: 'mdi:water-boiler',
+    };
+    const title = this.deviceName || kindTitle[this.kind] || '리모컨';
     return html`
       <div class="cn-modal__backdrop ${this._closing ? 'cn-modal__backdrop--closing' : ''}" @click=${this._onBackdrop}>
         <div class="cn-modal ${this._closing ? 'cn-modal--closing' : ''}" role="dialog" aria-modal="true" aria-label=${title}>
           <div class="cn-modal__head">
             <div class="cn-modal__title">
               <ha-icon
-                .icon=${this.kind === 'ac' ? 'mdi:air-conditioner' : 'mdi:fan'}
+                .icon=${kindIcon[this.kind] ?? 'mdi:remote'}
                 style="--mdc-icon-size:18px;width:18px;height:18px"
               ></ha-icon>
               <span>${title}</span>
@@ -705,7 +941,11 @@ export class CardnewsRemoteModal extends LitElement {
             </button>
           </div>
           <div class="cn-modal__body">
-            ${this.kind === 'ac' ? this._renderAc() : this._renderFan()}
+            ${this.kind === 'boiler'
+              ? this._renderBoiler()
+              : this.kind === 'ac'
+                ? this._renderAc()
+                : this._renderFan()}
           </div>
         </div>
       </div>
@@ -1032,6 +1272,9 @@ export class CardnewsRemoteModal extends LitElement {
         0 6px 16px rgba(0,0,0,0.24),
         inset 0 1px 0 rgba(255,255,255,0.18);
     }
+
+
+    .cn-tempctl--wide { width: 100%; justify-content: center; }
     .cn-tempctl--hint {
       grid-template-columns: 1fr;
       padding: 14px;
