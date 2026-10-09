@@ -289,7 +289,6 @@ export class CardnewsRemoteModal extends LitElement {
     room?: string;
     onsu?: string;
     away?: string;
-    cur?: string;
   } {
     const base = this.entity.split('.')[1] ?? '';
     const states = this.hass?.states ?? {};
@@ -299,7 +298,6 @@ export class CardnewsRemoteModal extends LitElement {
       room: pick(`number.${base}_room_temp`),
       onsu: pick(`number.${base}_hot_water_temp`),
       away: pick(`switch.${base}_away_mode`),
-      cur: pick(`sensor.${base}_current_hot_water`),
     };
   }
 
@@ -375,7 +373,6 @@ export class CardnewsRemoteModal extends LitElement {
     const awaySt = ids.away ? this.hass?.states[ids.away] : undefined;
     const isAway = awaySt ? awaySt.state === 'on' : e?.state === 'fan_only';
     const isSched = e?.state === 'heat';
-    const curOnsu = ids.cur ? this.hass?.states[ids.cur]?.state : undefined;
     const roomCur = e?.attributes.current_temperature;
 
     const modeIcon: Record<string, string> = {
@@ -442,12 +439,8 @@ export class CardnewsRemoteModal extends LitElement {
         ${ids.onsu
           ? html`
               <div class="cn-section">
-                <div class="cn-section__label">
-                  <span>온수 온도</span>
-                  ${curOnsu !== undefined && curOnsu !== 'unavailable'
-                    ? html`<span class="cn-section__hint">현재 ${curOnsu}°C</span>`
-                    : nothing}
-                </div>
+                <!-- 온수는 실측 센서가 없다(항상 0). 설정온도만 보여준다. -->
+                <div class="cn-section__label"><span>온수 온도</span></div>
                 <div class="cn-tempctl cn-tempctl--wide">
                   <button
                     class="cn-btn cn-btn--step"
